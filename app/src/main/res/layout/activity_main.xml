@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Container Utama Fragment -->
+    <!-- Container Utama tempat Fragment berganti -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment_user"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -14,39 +14,18 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_graph_user"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation_container"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Bottom Navigation Bar (Sudah Diperbaiki Atribut Constraint-nya) -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+    <!-- Bottom Navigation Custom (Sampingan Teks & Ikon) buatan ChatGPT -->
+    <include
+        android:id="@+id/bottom_navigation_container"
+        layout="@layout/bottom_navigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:menu="@menu/bottom_nav_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <!-- Isi halaman -->
-        <FrameLayout
-            android:id="@+id/fragmentContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="76dp" />
-
-        <!-- Bottom Navigation -->
-        <include
-            layout="@layout/bottom_navigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom" />
-
-    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

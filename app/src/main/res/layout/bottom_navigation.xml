@@ -9,7 +9,7 @@
     android:background="@drawable/bg_bottom_nav"
     android:gravity="center"
     android:orientation="horizontal"
-    android:padding="6dp">
+    android:padding="4dp">
 
     <!-- BERANDA -->
     <LinearLayout
@@ -19,7 +19,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingHorizontal="10dp">
+        android:paddingHorizontal="4dp">
 
         <ImageView
             android:id="@+id/iconHome"
@@ -31,7 +31,9 @@
             android:id="@+id/textHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="4dp"
+            android:maxLines="1"
+            android:singleLine="true"
             android:text="Beranda"
             android:textSize="12sp"
             android:visibility="visible" />
@@ -46,7 +48,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingHorizontal="10dp">
+        android:paddingHorizontal="4dp">
 
         <ImageView
             android:id="@+id/iconRecord"
@@ -58,7 +60,9 @@
             android:id="@+id/textRecord"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="4dp"
+            android:maxLines="1"
+            android:singleLine="true"
             android:text="Catat"
             android:textSize="12sp"
             android:visibility="gone" />
@@ -73,9 +77,10 @@
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingHorizontal="10dp">
+        android:paddingHorizontal="4dp">
 
         <ImageView
+            android:id="@+id/iconScan"
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:src="@drawable/ic_camera" />
@@ -84,7 +89,9 @@
             android:id="@+id/textScan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="4dp"
+            android:maxLines="1"
+            android:singleLine="true"
             android:text="Scan"
             android:textSize="12sp"
             android:visibility="gone" />
@@ -99,9 +106,10 @@
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingHorizontal="10dp">
+        android:paddingHorizontal="4dp">
 
         <ImageView
+            android:id="@+id/iconHistory"
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:src="@drawable/ic_history" />
@@ -110,7 +118,9 @@
             android:id="@+id/textHistory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="4dp"
+            android:maxLines="1"
+            android:singleLine="true"
             android:text="Riwayat"
             android:textSize="12sp"
             android:visibility="gone" />
@@ -125,9 +135,10 @@
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingHorizontal="10dp">
+        android:paddingHorizontal="4dp">
 
         <ImageView
+            android:id="@+id/iconProfile"
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:src="@drawable/ic_profile" />
@@ -136,7 +147,9 @@
             android:id="@+id/textProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="4dp"
+            android:maxLines="1"
+            android:singleLine="true"
             android:text="Profil"
             android:textSize="12sp"
             android:visibility="gone" />
