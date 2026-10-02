@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_user"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.selfmedicalrecord.ui.user.BerandaFragment"
+        android:label="Beranda"
+        tools:layout="@layout/fragment_beranda" />
+
+    <fragment
+        android:id="@+id/navigation_catat"
+        android:name="com.example.selfmedicalrecord.ui.user.InputDataKesehatanFragment"
+        android:label="Catat"
+        tools:layout="@layout/fragment_input_data_kesehatan" />
+
+    <fragment
+        android:id="@+id/navigation_scan"
+        android:name="com.example.selfmedicalrecord.ui.user.DeteksiKaloriFragment"
+        android:label="Scan"
+        tools:layout="@layout/fragment_deteksi_kalori" />
+
+    <fragment
+        android:id="@+id/navigation_riwayat"
+        android:name="com.example.selfmedicalrecord.ui.user.RiwayatPelayananFragment"
+        android:label="Riwayat"
+        tools:layout="@layout/fragment_riwayat_pelayanan" />
+
+    <fragment
+        android:id="@+id/navigation_profil"
+        android:name="com.example.selfmedicalrecord.ui.user.ProfilFragment"
+        android:label="Profil"
+        tools:layout="@layout/fragment_profil" />
+</navigation>
