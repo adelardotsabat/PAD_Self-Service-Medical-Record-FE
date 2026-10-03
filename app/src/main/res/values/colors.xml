@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Primary Colors -->
+    <color name="blue_primary">#478CE3</color>
+    <color name="blue_active_bg">#E7F0FA</color>
+
+    <!-- Backgrounds -->
+    <color name="bg_screen">#F5F5F5</color>
+    <color name="white">#FFFFFF</color>
+    <color name="bg_inactive">#F5F5F5</color>
+    <color name="pill_bg_inactive">#97BDEF</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#18181B</color>
+    <color name="text_secondary">#71717A</color>
+    <color name="text_muted">#94A3B8</color>
+
+    <!-- Badges & Accents -->
+    <color name="badge_green_bg">#E9F6F0</color>
+    <color name="badge_green_text">#278463</color>
+    <color name="chart_systolic">#478CE3</color>
+    <color name="chart_diastolic">#9DC1F4</color>
 </resources>

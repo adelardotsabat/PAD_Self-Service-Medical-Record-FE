@@ -2,24 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/bottomNavigation"
     android:layout_width="match_parent"
-    android:layout_height="64dp"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
-    android:layout_marginBottom="12dp"
+    android:layout_height="match_parent"
     android:background="@drawable/bg_bottom_nav"
-    android:gravity="center"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:elevation="2dp"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="4dp">
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="8dp">
 
     <!-- BERANDA -->
     <LinearLayout
         android:id="@+id/navHome"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="40dp"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingHorizontal="4dp">
+        android:paddingHorizontal="8dp">
 
         <ImageView
             android:id="@+id/iconHome"
@@ -31,12 +32,14 @@
             android:id="@+id/textHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="6dp"
+            android:fontFamily="sans-serif-medium"
             android:maxLines="1"
             android:singleLine="true"
             android:text="Beranda"
+            android:textColor="@color/blue_primary"
             android:textSize="12sp"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
     </LinearLayout>
 
@@ -44,11 +47,11 @@
     <LinearLayout
         android:id="@+id/navRecord"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="40dp"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingHorizontal="4dp">
+        android:paddingHorizontal="8dp">
 
         <ImageView
             android:id="@+id/iconRecord"
@@ -60,10 +63,12 @@
             android:id="@+id/textRecord"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="6dp"
+            android:fontFamily="sans-serif-medium"
             android:maxLines="1"
             android:singleLine="true"
             android:text="Catat"
+            android:textColor="@color/blue_primary"
             android:textSize="12sp"
             android:visibility="gone" />
 
@@ -73,11 +78,11 @@
     <LinearLayout
         android:id="@+id/navScan"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="40dp"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingHorizontal="4dp">
+        android:paddingHorizontal="8dp">
 
         <ImageView
             android:id="@+id/iconScan"
@@ -89,10 +94,12 @@
             android:id="@+id/textScan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="6dp"
+            android:fontFamily="sans-serif-medium"
             android:maxLines="1"
             android:singleLine="true"
             android:text="Scan"
+            android:textColor="@color/blue_primary"
             android:textSize="12sp"
             android:visibility="gone" />
 
@@ -102,11 +109,11 @@
     <LinearLayout
         android:id="@+id/navHistory"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="40dp"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingHorizontal="4dp">
+        android:paddingHorizontal="8dp">
 
         <ImageView
             android:id="@+id/iconHistory"
@@ -118,10 +125,12 @@
             android:id="@+id/textHistory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="6dp"
+            android:fontFamily="sans-serif-medium"
             android:maxLines="1"
             android:singleLine="true"
             android:text="Riwayat"
+            android:textColor="@color/blue_primary"
             android:textSize="12sp"
             android:visibility="gone" />
 
@@ -131,11 +140,11 @@
     <LinearLayout
         android:id="@+id/navProfile"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="40dp"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingHorizontal="4dp">
+        android:paddingHorizontal="8dp">
 
         <ImageView
             android:id="@+id/iconProfile"
@@ -147,10 +156,12 @@
             android:id="@+id/textProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="6dp"
+            android:fontFamily="sans-serif-medium"
             android:maxLines="1"
             android:singleLine="true"
             android:text="Profil"
+            android:textColor="@color/blue_primary"
             android:textSize="12sp"
             android:visibility="gone" />
 
