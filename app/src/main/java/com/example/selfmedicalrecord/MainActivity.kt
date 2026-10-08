@@ -18,7 +18,6 @@ import androidx.core.view.updatePadding
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.navOptions
-import androidx.navigation.ui.findStartDestination
 import com.example.selfmedicalrecord.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -119,7 +118,7 @@ class MainActivity : AppCompatActivity() {
             navOptions {
                 launchSingleTop = true
                 restoreState = true
-                popUpTo(navController.graph.findStartDestination().id) {
+                popUpTo(navController.graph.startDestinationId) {
                     saveState = true
                 }
             }
