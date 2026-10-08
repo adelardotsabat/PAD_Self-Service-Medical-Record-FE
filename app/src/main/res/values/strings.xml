@@ -2,4 +2,64 @@
     <string name="app_name">SelfMedicalRecord</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Umum -->
+    <string name="action_back">Kembali</string>
+    <string name="action_login">Masuk</string>
+    <string name="action_register">Daftar</string>
+    <string name="action_save">Simpan</string>
+    <string name="action_loading">Memproses…</string>
+    <string name="feature_coming_soon">Fitur ini belum tersedia</string>
+
+    <!-- Label dan hint form -->
+    <string name="label_email">Alamat Email</string>
+    <string name="label_password">Kata Sandi</string>
+    <string name="label_create_password">Buat Kata Sandi</string>
+    <string name="label_confirm_password">Ulangi Kata Sandi</string>
+    <string name="label_full_name">Nama Lengkap</string>
+    <string name="label_nik">Nomor Induk Kependudukan (NIK)</string>
+    <string name="label_gender">Jenis Kelamin</string>
+    <string name="label_birth_date">Tanggal Lahir</string>
+    <string name="hint_email">Masukkan alamat email</string>
+    <string name="hint_password">Masukkan kata sandi</string>
+    <string name="hint_full_name">Masukkan nama lengkap</string>
+    <string name="hint_nik">Masukkan NIK</string>
+    <string name="hint_gender">Pilih jenis kelamin</string>
+    <string name="hint_birth_date">dd / mm / yyyy</string>
+    <string name="gender_male">Laki-laki</string>
+    <string name="gender_female">Perempuan</string>
+    <string-array name="gender_options">
+        <item>@string/gender_male</item>
+        <item>@string/gender_female</item>
+    </string-array>
+
+    <!-- Login -->
+    <string name="login_title">Selamat Datang Kembali!</string>
+    <string name="login_forgot_password">Lupa Kata Sandi?</string>
+    <string name="login_or">atau</string>
+    <string name="login_with_google">Masuk dengan Google</string>
+    <string name="login_no_account">Belum punya akun?</string>
+    <string name="login_register_now">Daftar sekarang</string>
+
+    <!-- Register -->
+    <string name="register_title">Daftar Akun Baru</string>
+    <string name="register_have_account">Sudah punya akun?</string>
+    <string name="register_login">Masuk</string>
+    <string name="profile_title">Lengkapi Data Diri</string>
+    <string name="profile_subtitle">Akun berhasil dibuat! Silakan isi data berikut.</string>
+
+    <!-- Pesan error -->
+    <string name="error_email_required">Email wajib diisi</string>
+    <string name="error_email_invalid">Format email tidak valid</string>
+    <string name="error_password_required">Kata sandi wajib diisi</string>
+    <string name="error_password_too_short">Kata sandi minimal 8 karakter</string>
+    <string name="error_confirm_required">Ulangi kata sandi</string>
+    <string name="error_confirm_mismatch">Kata sandi tidak sama</string>
+    <string name="error_full_name_required">Nama lengkap wajib diisi</string>
+    <string name="error_nik_required">NIK wajib diisi</string>
+    <string name="error_nik_invalid">NIK harus 16 digit angka</string>
+    <string name="error_birth_date_required">Tanggal lahir wajib diisi</string>
+    <string name="error_login_failed">Email atau kata sandi salah</string>
+    <string name="error_register_failed">Pendaftaran gagal. Coba lagi</string>
+    <string name="error_save_profile_failed">Data gagal disimpan. Coba lagi</string>
 </resources>
