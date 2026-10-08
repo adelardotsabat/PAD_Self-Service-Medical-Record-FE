@@ -9,215 +9,218 @@
     android:clipToPadding="false"
     android:fillViewport="true">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:orientation="vertical"
         android:padding="20dp"
-        android:paddingBottom="80dp"> <!-- Tambahkan ini agar aman saat di-scroll -->>
+        android:paddingBottom="80dp">
 
-        <!-- HEADER: Profil & Notifikasi -->
-        <LinearLayout
-            android:layout_width="match_parent"
+        <!-- HEADER: Avatar, Greeting, Search & Notification -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_person"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
+
+        <TextView
+            android:id="@+id/tv_greeting"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            android:text="Selamat siang!"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toStartOf="@id/btn_search"
+            app:layout_constraintStart_toEndOf="@id/iv_avatar"
+            app:layout_constraintTop_toTopOf="@id/iv_avatar" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/iv_avatar"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_person"
-                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="sans-serif-black"
+            android:text="NAMA LENGKAP"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@id/btn_search"
+            app:layout_constraintStart_toEndOf="@id/iv_avatar"
+            app:layout_constraintTop_toBottomOf="@id/tv_greeting" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
+        <ImageButton
+            android:id="@+id/btn_search"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_circle_icon"
+            android:elevation="2dp"
+            android:src="@drawable/ic_search"
+            app:layout_constraintBottom_toBottomOf="@id/iv_avatar"
+            app:layout_constraintEnd_toStartOf="@id/btn_notification"
+            app:layout_constraintTop_toTopOf="@id/iv_avatar"
+            app:tint="@color/text_primary" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Selamat siang!"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="13sp" />
+        <ImageButton
+            android:id="@+id/btn_notification"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_circle_icon"
+            android:elevation="2dp"
+            android:src="@drawable/ic_notifications"
+            app:layout_constraintBottom_toBottomOf="@id/iv_avatar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_avatar"
+            app:tint="@color/text_primary" />
 
-                <TextView
-                    android:id="@+id/tv_user_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-black"
-                    android:text="NAMA LENGKAP"
-                    android:textColor="@color/text_primary"
-                    android:textSize="16sp" />
-            </LinearLayout>
 
-            <!-- Search Button -->
-            <ImageButton
-                android:id="@+id/btn_search"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/bg_circle_icon"
-                android:elevation="2dp"
-                android:src="@drawable/ic_search"
-                app:tint="@color/text_primary" />
-
-            <!-- Notification Button -->
-            <ImageButton
-                android:id="@+id/btn_notification"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/bg_circle_icon"
-                android:elevation="2dp"
-                android:src="@drawable/ic_notifications"
-                app:tint="@color/text_primary" />
-        </LinearLayout>
-
-        <!-- KARTU RINGKASAN: Berat & Tinggi Badan -->
+        <!-- KARTU RINGKASAN: Berat & Tinggi Badan (Chained Horizontal) -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/cardWeight"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:baselineAligned="false"
-            android:orientation="horizontal">
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_card_white"
+            android:elevation="2dp"
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintEnd_toStartOf="@id/cardHeight"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_avatar">
 
-            <!-- Card Berat Badan -->
             <LinearLayout
-                android:id="@+id/cardWeight"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_card_white"
-                android:elevation="2dp"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <LinearLayout
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_weight"
+                    app:tint="@color/text_secondary" />
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_weight"
-                        app:tint="@color/text_secondary" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="Berat Badan"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="13sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:gravity="bottom"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tv_weight_value"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-bold"
-                        android:text="45"
-                        android:textColor="@color/text_primary"
-                        android:textSize="28sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginBottom="4dp"
-                        android:text="kg"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="14sp" />
-                </LinearLayout>
+                    android:layout_marginStart="8dp"
+                    android:text="Berat Badan"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="13sp" />
             </LinearLayout>
 
-            <!-- Card Tinggi Badan -->
             <LinearLayout
-                android:id="@+id/cardHeight"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_card_white"
-                android:elevation="2dp"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:layout_marginTop="12dp"
+                android:gravity="bottom"
+                android:orientation="horizontal">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/tv_weight_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:fontFamily="sans-serif-bold"
+                    android:text="45"
+                    android:textColor="@color/text_primary"
+                    android:textSize="28sp" />
 
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_height"
-                        app:tint="@color/text_secondary" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="Tinggi Badan"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="13sp" />
-                </LinearLayout>
-
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:gravity="bottom"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tv_height_value"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-bold"
-                        android:text="160"
-                        android:textColor="@color/text_primary"
-                        android:textSize="28sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginBottom="4dp"
-                        android:text="cm"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="14sp" />
-                </LinearLayout>
+                    android:layout_marginStart="6dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="kg"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cardHeight"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_card_white"
+            android:elevation="2dp"
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/cardWeight"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cardWeight"
+            app:layout_constraintTop_toTopOf="@id/cardWeight">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_height"
+                    app:tint="@color/text_secondary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Tinggi Badan"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="bottom"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_height_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-bold"
+                    android:text="160"
+                    android:textColor="@color/text_primary"
+                    android:textSize="28sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="cm"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+
 
         <!-- KARTU GRAFIK 1: Indeks Massa Tubuh (BMI) -->
         <LinearLayout
             android:id="@+id/cardBmi"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_card_white"
             android:elevation="2dp"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardWeight">
 
             <!-- Filter Periode -->
             <LinearLayout
@@ -359,17 +362,20 @@
                 android:layout_marginTop="12dp" />
         </LinearLayout>
 
+
         <!-- KARTU GRAFIK 2: Tekanan Darah -->
         <LinearLayout
             android:id="@+id/cardBp"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="20dp"
             android:background="@drawable/bg_card_white"
             android:elevation="2dp"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardBmi">
 
             <!-- Filter Periode -->
             <LinearLayout
@@ -548,8 +554,12 @@
         </LinearLayout>
 
         <Space
-            android:layout_width="match_parent"
-            android:layout_height="88dp" />
+            android:layout_width="0dp"
+            android:layout_height="88dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardBp" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
