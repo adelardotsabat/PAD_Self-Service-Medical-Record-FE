@@ -1,0 +1,67 @@
+<resources>
+
+    <!-- Sudut membulat untuk kolom input dan tombol di halaman auth -->
+    <style name="ShapeAppearance.App.Field" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+    </style>
+
+    <!-- Kolom input putih dengan border tipis. Label ada di TextView di atasnya, bukan hint mengambang. -->
+    <style name="Widget.App.AuthField" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="hintEnabled">false</item>
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="boxStrokeColor">@color/field_stroke</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.Field</item>
+        <item name="errorIconDrawable">@null</item>
+    </style>
+
+    <style name="Widget.App.AuthFieldDropdown" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="hintEnabled">false</item>
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="boxStrokeColor">@color/field_stroke</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.Field</item>
+        <item name="errorIconDrawable">@null</item>
+    </style>
+
+    <style name="TextAppearance.App.AuthTitle" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="TextAppearance.App.FieldLabel" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/blue_primary</item>
+    </style>
+
+    <style name="TextAppearance.App.Caption" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <style name="TextAppearance.App.Link" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/blue_primary</item>
+    </style>
+
+    <!-- Tinggi tombol (48dp) diatur di layout, karena layout_* tidak dibaca dari style. -->
+    <style name="Widget.App.AuthButton" parent="Widget.Material3.Button">
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/blue_primary</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.Field</item>
+    </style>
+
+    <style name="Widget.App.AuthButton.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="backgroundTint">@color/white</item>
+        <item name="strokeColor">@color/border_field</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.Field</item>
+    </style>
+
+</resources>

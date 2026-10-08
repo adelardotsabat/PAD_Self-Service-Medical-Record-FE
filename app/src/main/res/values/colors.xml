@@ -20,4 +20,8 @@
     <color name="badge_green_text">#278463</color>
     <color name="chart_systolic">#478CE3</color>
     <color name="chart_diastolic">#9DC1F4</color>
+
+    <!-- Form -->
+    <color name="border_field">#E4E4E7</color>
+    <color name="required_red">#E5484D</color>
 </resources>
