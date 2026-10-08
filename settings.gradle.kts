@@ -19,7 +19,11 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url = uri("https://jitpack.io") }
+        maven {
+            url = uri("https://jitpack.io")
+            // Hanya dipakai untuk MPAndroidChart; library lain tidak boleh ditarik dari JitPack.
+            content { includeGroup("com.github.PhilJay") }
+        }
     }
 }
 
