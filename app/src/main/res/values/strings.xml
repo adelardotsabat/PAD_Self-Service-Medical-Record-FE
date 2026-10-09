@@ -62,4 +62,78 @@
     <string name="error_login_failed">Email atau kata sandi salah</string>
     <string name="error_register_failed">Pendaftaran gagal. Coba lagi</string>
     <string name="error_save_profile_failed">Data gagal disimpan. Coba lagi</string>
+
+    <!-- Umum tambahan -->
+    <string name="action_ok">Oke</string>
+    <string name="value_placeholder">-</string>
+
+    <!-- Beranda -->
+    <string name="chart_empty">Belum ada data</string>
+    <string name="bmi_value_format">%1$s kg/m²</string>
+    <string name="bp_value_format">%1$d/%2$d mmHg</string>
+    <string name="period_subtitle_week">Rata-rata minggu ini</string>
+    <string name="period_subtitle_month">Rata-rata 30 hari terakhir</string>
+    <string name="period_subtitle_3months">Rata-rata 3 bulan terakhir</string>
+    <string name="period_subtitle_6months">Rata-rata 6 bulan terakhir</string>
+    <string name="bp_subtitle_today">Pembacaan terbaru hari ini</string>
+    <string name="bp_subtitle_date">Pembacaan terakhir %1$s</string>
+    <string name="bp_subtitle_empty">Belum ada pembacaan</string>
+    <string name="trend_stable">Stabil</string>
+    <string name="trend_up">Naik</string>
+    <string name="trend_down">Turun</string>
+
+    <!-- Kategori BMI dan tekanan darah -->
+    <string name="bmi_underweight">Berat Kurang</string>
+    <string name="bmi_ideal">Berat Ideal</string>
+    <string name="bmi_overweight">Berat Berlebih</string>
+    <string name="bmi_obese">Obesitas</string>
+    <string name="bp_low">Rendah</string>
+    <string name="bp_normal">Normal</string>
+    <string name="bp_elevated">Meningkat</string>
+    <string name="bp_high">Tinggi</string>
+
+    <!-- Input data kesehatan -->
+    <string name="input_title">Input Data Kesehatan</string>
+    <string name="input_subtitle">Catat berat badan, tinggi badan, dan tekanan darah</string>
+    <string name="tab_bmi">BMI</string>
+    <string name="tab_blood_pressure">Tensi</string>
+    <string name="label_date">Tanggal</string>
+    <string name="label_weight_kg">Berat Badan (kg)</string>
+    <string name="label_height_cm">Tinggi Badan (cm)</string>
+    <string name="label_systolic">Sistolik (mmHg)</string>
+    <string name="label_diastolic">Diastolik (mmHg)</string>
+    <string name="hint_weight">Masukkan berat badan</string>
+    <string name="hint_height">Masukkan tinggi badan</string>
+    <string name="hint_systolic">Masukkan nilai sistolik</string>
+    <string name="hint_diastolic">Masukkan nilai diastolik</string>
+    <string name="action_calculate_bmi">Hitung BMI</string>
+    <string name="saved_success">Data berhasil disimpan</string>
+    <string name="error_save_failed">Data gagal disimpan. Coba lagi</string>
+    <string name="error_number_invalid">Masukkan angka yang valid</string>
+    <string name="error_weight_required">Berat badan wajib diisi</string>
+    <string name="error_weight_range">Berat badan harus antara 2 dan 500 kg</string>
+    <string name="error_height_required">Tinggi badan wajib diisi</string>
+    <string name="error_height_range">Tinggi badan harus antara 30 dan 250 cm</string>
+    <string name="error_systolic_required">Sistolik wajib diisi</string>
+    <string name="error_systolic_range">Sistolik harus antara 50 dan 300</string>
+    <string name="error_diastolic_required">Diastolik wajib diisi</string>
+    <string name="error_diastolic_range">Diastolik harus antara 30 dan 200</string>
+    <string name="error_diastolic_above_systolic">Diastolik harus lebih kecil dari sistolik</string>
+    <string name="bp_warning_title">Perhatian</string>
+    <string name="bp_warning_message">Data tersimpan. Tekanan darah %1$d/%2$d mmHg berada pada kategori %3$s, di luar rentang normal. Ini bukan diagnosis. Pantau kembali, dan konsultasikan ke tenaga kesehatan jika berlanjut atau disertai keluhan.</string>
+
+    <!-- Hasil BMI -->
+    <string name="result_bmi_title">Hasil BMI</string>
+    <string name="result_weight">Berat</string>
+    <string name="result_height">Tinggi</string>
+    <string name="result_value_kg">%1$s kg</string>
+    <string name="result_value_cm">%1$s cm</string>
+    <string name="result_bmi_range">Rentang BMI</string>
+    <string name="result_normal_range">Normal %1$s–%2$s</string>
+    <string name="result_summary">BMI kamu: %1$s, %2$s</string>
+    <string name="result_note_underweight">Berat badan kamu di bawah rentang ideal. Pastikan asupan kalori dan nutrisi tercukupi.</string>
+    <string name="result_note_ideal">Pastikan asupan kalori sesuai dengan kebutuhan kalori harian dan konsumsi makanan sehat.</string>
+    <string name="result_note_overweight">Berat badan kamu di atas rentang ideal. Perhatikan asupan kalori dan tingkatkan aktivitas fisik.</string>
+    <string name="result_note_obese">BMI kamu berada pada kategori obesitas. Disarankan berkonsultasi dengan tenaga kesehatan.</string>
+    <string name="action_recalculate">Hitung Ulang</string>
 </resources>

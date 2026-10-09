@@ -24,4 +24,15 @@
     <!-- Form -->
     <color name="border_field">#E4E4E7</color>
     <color name="required_red">#E5484D</color>
+
+    <!-- Status: kuning dan merah (hijau sudah ada di atas) -->
+    <color name="badge_amber_bg">#FDF3E1</color>
+    <color name="badge_amber_text">#A8690B</color>
+    <color name="badge_red_bg">#FDECEC</color>
+    <color name="badge_red_text">#C0392B</color>
+
+    <!-- Bar rentang BMI -->
+    <color name="bar_red">#F26D6D</color>
+    <color name="bar_green">#5FB98E</color>
+    <color name="bar_yellow">#E8B84A</color>
 </resources>
