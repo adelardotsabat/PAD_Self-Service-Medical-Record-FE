@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.selfmedicalrecord.R
 import com.example.selfmedicalrecord.data.auth.AuthRepository
-import com.example.selfmedicalrecord.data.auth.FakeAuthRepository
+import com.example.selfmedicalrecord.data.ServiceLocator
 import com.example.selfmedicalrecord.data.auth.PatientProfile
 import com.example.selfmedicalrecord.utils.Validators
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -50,7 +50,7 @@ data class RegisterUiState(
 }
 
 class RegisterViewModel(
-    private val repository: AuthRepository = FakeAuthRepository()
+    private val repository: AuthRepository = ServiceLocator.authRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(RegisterUiState())

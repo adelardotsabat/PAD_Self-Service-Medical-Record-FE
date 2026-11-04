@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.selfmedicalrecord.MainActivity
 import com.example.selfmedicalrecord.R
+import com.example.selfmedicalrecord.data.ServiceLocator
 import com.example.selfmedicalrecord.databinding.ActivityWelcomeBinding
 import com.example.selfmedicalrecord.utils.applySystemBarInsetsAsPadding
 import com.google.android.material.snackbar.Snackbar
@@ -21,11 +23,19 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+        // Sesi masih ada (token tersimpan): langsung ke aplikasi.
+        if (ServiceLocator.tokenStore.hasToken()) {
+            startActivity(
+                Intent(this, MainActivity::class.java)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            )
+            finish()
+            return
+        }
+
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.root.applySystemBarInsetsAsPadding()
-
-        // TODO: jika sesi login masih valid (token tersimpan), langsung buka MainActivity.
 
         binding.btnLogin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))

@@ -3,7 +3,7 @@ package com.example.selfmedicalrecord.ui.profil
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.selfmedicalrecord.data.auth.AuthRepository
-import com.example.selfmedicalrecord.data.auth.FakeAuthRepository
+import com.example.selfmedicalrecord.data.ServiceLocator
 import com.example.selfmedicalrecord.data.profile.FakeProfileRepository
 import com.example.selfmedicalrecord.data.profile.ProfileRepository
 import com.example.selfmedicalrecord.data.profile.UserProfile
@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 class ProfilViewModel(
     profileRepository: ProfileRepository = FakeProfileRepository(),
-    private val authRepository: AuthRepository = FakeAuthRepository()
+    private val authRepository: AuthRepository = ServiceLocator.authRepository
 ) : ViewModel() {
 
     /** Profil terkini; kartu di tab Profil ikut berubah saat Kelola Profil menyimpan. */

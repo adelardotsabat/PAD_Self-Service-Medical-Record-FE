@@ -32,8 +32,6 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.root.applySystemBarInsetsAsPadding()
 
-        // TODO: jika sesi login masih valid (token tersimpan), langsung buka MainActivity.
-
         setupListeners()
 
         lifecycleScope.launch {
