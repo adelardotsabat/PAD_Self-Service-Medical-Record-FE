@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Hanya untuk build debug: izinkan HTTP biasa ke server lokal (10.0.2.2:8000).
-         Build release tetap menolak HTTP tanpa enkripsi. -->
+    <uses-permission android:name="android.permission.ACCESS_LOCAL_NETWORK" />
+
     <application android:usesCleartextTraffic="true" />
 </manifest>
