@@ -12,7 +12,13 @@ interface AuthRepository {
     /** Langkah 1 register: membuat akun dengan email dan kata sandi. */
     suspend fun register(email: String, password: String): Result<Unit>
 
-    /** Langkah 2 register: melengkapi data diri pasien. */
+    /** Memverifikasi email dengan kode 6 digit yang dikirim server setelah [register]. */
+    suspend fun verifyEmail(email: String, code: String): Result<Unit>
+
+    /** Meminta kode verifikasi baru (server membatasi satu kali per 60 detik). */
+    suspend fun resendVerificationCode(email: String): Result<Unit>
+
+    /** Langkah terakhir register: melengkapi data diri pasien (pengguna sudah login). */
     suspend fun saveProfile(profile: PatientProfile): Result<Unit>
 
     /** Meminta tautan pengaturan ulang kata sandi dikirim ke [email]. */
@@ -28,7 +34,7 @@ interface AuthRepository {
 data class PatientProfile(
     val fullName: String,
     val nik: String,
-    /** Null jika pengguna tidak memilih. */
+    /** "MALE" atau "FEMALE"; null jika pengguna tidak memilih. */
     val gender: String?,
     /** Tanggal lahir sebagai epoch millis (UTC, tengah malam), apa adanya dari date picker. */
     val birthDateMillis: Long

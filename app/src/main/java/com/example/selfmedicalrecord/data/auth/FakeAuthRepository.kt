@@ -24,6 +24,16 @@ class FakeAuthRepository : AuthRepository {
         return Result.success(Unit)
     }
 
+    override suspend fun verifyEmail(email: String, code: String): Result<Unit> {
+        delay(FAKE_LATENCY_MS)
+        return Result.success(Unit)
+    }
+
+    override suspend fun resendVerificationCode(email: String): Result<Unit> {
+        delay(FAKE_LATENCY_MS)
+        return Result.success(Unit)
+    }
+
     override suspend fun saveProfile(profile: PatientProfile): Result<Unit> {
         delay(FAKE_LATENCY_MS)
         return Result.success(Unit)

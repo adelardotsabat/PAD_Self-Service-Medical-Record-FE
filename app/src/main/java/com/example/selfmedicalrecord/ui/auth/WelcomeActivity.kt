@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.selfmedicalrecord.MainActivity
 import com.example.selfmedicalrecord.R
 import com.example.selfmedicalrecord.data.ServiceLocator
 import com.example.selfmedicalrecord.databinding.ActivityWelcomeBinding
@@ -25,10 +24,7 @@ class WelcomeActivity : AppCompatActivity() {
 
         // Sesi masih ada (token tersimpan): langsung ke aplikasi.
         if (ServiceLocator.tokenStore.hasToken()) {
-            startActivity(
-                Intent(this, MainActivity::class.java)
-                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            )
+            startActivity(SessionRouter.homeIntent(this))
             finish()
             return
         }

@@ -165,7 +165,87 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- ================= LANGKAH 2: LENGKAPI DATA DIRI ================= -->
+        <!-- ================= LANGKAH 2: VERIFIKASI EMAIL ================= -->
+        <LinearLayout
+            android:id="@+id/groupVerify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/verify_title"
+                android:textAppearance="@style/TextAppearance.App.AuthTitle" />
+
+            <TextView
+                android:id="@+id/tvVerifySubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textAppearance="@style/TextAppearance.App.Caption" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/label_verify_code"
+                android:textAppearance="@style/TextAppearance.App.FieldLabel" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilCode"
+                style="@style/Widget.App.AuthField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="0123456789"
+                    android:hint="@string/hint_verify_code"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:maxLines="1"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_muted"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvVerifyError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textColor="?attr/colorError"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnVerify"
+                style="@style/Widget.App.AuthButton"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/action_verify" />
+
+            <TextView
+                android:id="@+id/tvResend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:padding="4dp"
+                android:text="@string/verify_resend"
+                android:textAppearance="@style/TextAppearance.App.Link" />
+        </LinearLayout>
+
+        <!-- ================= LANGKAH 3: LENGKAPI DATA DIRI ================= -->
         <LinearLayout
             android:id="@+id/groupProfile"
             android:layout_width="match_parent"

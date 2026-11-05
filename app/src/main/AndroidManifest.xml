@@ -80,6 +80,16 @@
             android:name=".MainActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+
+        <!-- Admin -->
+        <activity android:name=".ui.admin.AdminDashboardActivity" android:exported="false" />
+        <activity android:name=".ui.admin.EndpointActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ui.admin.IntegrationStatusActivity" android:exported="false" />
+        <activity android:name=".ui.admin.ActivityLogActivity" android:exported="false" />
+        <activity android:name=".ui.admin.UserListActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ui.admin.UserActivityActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ui.admin.AddUserActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
