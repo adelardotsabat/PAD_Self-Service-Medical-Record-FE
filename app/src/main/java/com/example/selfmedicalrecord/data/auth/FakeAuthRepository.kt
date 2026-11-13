@@ -44,6 +44,20 @@ class FakeAuthRepository : AuthRepository {
         return Result.success(Unit)
     }
 
+    override suspend fun verifyPasswordResetCode(email: String, code: String): Result<String> {
+        delay(FAKE_LATENCY_MS)
+        return Result.success("fake-reset-token")
+    }
+
+    override suspend fun resetPassword(
+        email: String,
+        resetToken: String,
+        newPassword: String
+    ): Result<Unit> {
+        delay(FAKE_LATENCY_MS)
+        return Result.success(Unit)
+    }
+
     override suspend fun changePassword(currentPassword: String, newPassword: String): Result<Unit> {
         delay(FAKE_LATENCY_MS)
         return if (currentPassword == DEMO_WRONG_PASSWORD) {

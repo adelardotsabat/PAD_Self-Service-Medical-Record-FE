@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="greeting_morning">Selamat pagi!</string>
+    <string name="greeting_afternoon">Selamat siang!</string>
+    <string name="greeting_evening">Selamat sore!</string>
+    <string name="greeting_night">Selamat malam!</string>
+</resources>

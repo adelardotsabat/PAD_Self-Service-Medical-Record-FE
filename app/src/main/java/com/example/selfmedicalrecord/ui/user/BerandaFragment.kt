@@ -59,12 +59,26 @@ class BerandaFragment : Fragment() {
         setupSoftShadows()
         setupCharts()
         setupPeriodPills()
+        binding.tvGreeting.setText(greetingForNow())
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collect { state -> render(state) }
+                launch { viewModel.uiState.collect { state -> render(state) } }
+                launch {
+                    viewModel.displayName.collect { name ->
+                        binding.tvUserName.text = name.ifBlank { getString(R.string.profil_default_name) }
+                    }
+                }
             }
         }
+    }
+
+    /** Sapaan menurut jam di perangkat. */
+    private fun greetingForNow(): Int = when (java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY)) {
+        in 4..10 -> R.string.greeting_morning
+        in 11..14 -> R.string.greeting_afternoon
+        in 15..17 -> R.string.greeting_evening
+        else -> R.string.greeting_night
     }
 
     private fun setupSoftShadows() {

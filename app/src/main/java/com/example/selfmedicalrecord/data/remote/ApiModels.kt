@@ -45,9 +45,38 @@ data class AuthData(
     val user: UserDto? = null
 )
 
+data class ForgotPasswordRequest(
+    val email: String
+)
+
+data class VerifyResetCodeRequest(
+    val email: String,
+    val code: String
+)
+
+/** Data balasan /password/verify-code: token sekali pakai untuk langkah terakhir. */
+data class ResetTokenData(
+    @SerializedName("reset_token") val resetToken: String? = null
+)
+
+data class ResetPasswordRequest(
+    val email: String,
+    @SerializedName("reset_token") val resetToken: String,
+    val password: String,
+    @SerializedName("password_confirmation") val passwordConfirmation: String
+)
+
+/**
+ * Data akun dari /login dan /me. NIK dan telepon SENGAJA tidak dikirim backend
+ * (disembunyikan di model User), jadi tidak ada di sini.
+ */
 data class UserDto(
     val name: String? = null,
     val email: String? = null,
+    /** "MALE" atau "FEMALE"; null jika belum diisi. */
+    val gender: String? = null,
+    /** Format yyyy-MM-dd; null jika belum diisi. */
+    @SerializedName("date_of_birth") val dateOfBirth: String? = null,
     /** Backend memuat relasi role: {"role_id": 2, "role_name": "ADMIN"}. */
     val role: RoleDto? = null
 )

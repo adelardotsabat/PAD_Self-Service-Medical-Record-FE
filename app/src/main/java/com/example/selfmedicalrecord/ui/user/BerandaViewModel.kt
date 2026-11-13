@@ -7,6 +7,7 @@ import com.example.selfmedicalrecord.R
 import com.example.selfmedicalrecord.data.ServiceLocator
 import com.example.selfmedicalrecord.data.health.BloodPressureRecord
 import com.example.selfmedicalrecord.data.health.HealthRepository
+import com.example.selfmedicalrecord.data.profile.ProfileRepository
 import com.example.selfmedicalrecord.domain.health.BloodPressureCategory
 import com.example.selfmedicalrecord.domain.health.BloodPressureClassifier
 import com.example.selfmedicalrecord.domain.health.BmiCalculator
@@ -17,6 +18,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.stateIn
 import kotlin.math.abs
 
@@ -67,8 +70,18 @@ data class BerandaUiState(
 )
 
 class BerandaViewModel(
-    repository: HealthRepository = ServiceLocator.healthRepository
+    repository: HealthRepository = ServiceLocator.healthRepository,
+    private val profileRepository: ProfileRepository = ServiceLocator.profileRepository
 ) : ViewModel() {
+
+    /** Nama pengguna untuk sapaan di header; kosong bila belum diketahui. */
+    val displayName: StateFlow<String> = profileRepository.profile
+        .map { it.fullName }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), profileRepository.profile.value.fullName)
+
+    init {
+        viewModelScope.launch { profileRepository.refresh() }
+    }
 
     private val bmiPeriod = MutableStateFlow(ChartPeriod.WEEK)
     private val bpPeriod = MutableStateFlow(ChartPeriod.WEEK)

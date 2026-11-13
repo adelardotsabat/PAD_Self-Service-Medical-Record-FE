@@ -21,6 +21,10 @@ class FakeProfileRepository : ProfileRepository {
         return Result.success(Unit)
     }
 
+    override suspend fun refresh(): Result<Unit> = Result.success(Unit)
+
+    override fun clear() = Unit
+
     private companion object {
         const val FAKE_LATENCY_MS = 600L
 

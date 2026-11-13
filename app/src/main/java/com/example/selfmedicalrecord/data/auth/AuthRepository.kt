@@ -21,8 +21,14 @@ interface AuthRepository {
     /** Langkah terakhir register: melengkapi data diri pasien (pengguna sudah login). */
     suspend fun saveProfile(profile: PatientProfile): Result<Unit>
 
-    /** Meminta tautan pengaturan ulang kata sandi dikirim ke [email]. */
+    /** Lupa sandi langkah 1: kode 6 digit dikirim ke [email] (server membatasi satu kali per 60 detik). */
     suspend fun requestPasswordReset(email: String): Result<Unit>
+
+    /** Lupa sandi langkah 2: menukar kode 6 digit dengan token reset sekali pakai. */
+    suspend fun verifyPasswordResetCode(email: String, code: String): Result<String>
+
+    /** Lupa sandi langkah 3: menetapkan kata sandi baru memakai token dari langkah 2. */
+    suspend fun resetPassword(email: String, resetToken: String, newPassword: String): Result<Unit>
 
     /** Mengganti kata sandi saat sudah masuk. Gagal jika [currentPassword] salah. */
     suspend fun changePassword(currentPassword: String, newPassword: String): Result<Unit>

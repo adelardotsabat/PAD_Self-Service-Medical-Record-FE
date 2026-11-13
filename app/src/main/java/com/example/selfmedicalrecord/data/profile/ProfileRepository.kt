@@ -8,4 +8,10 @@ interface ProfileRepository {
     val profile: StateFlow<UserProfile>
 
     suspend fun updateProfile(profile: UserProfile): Result<Unit>
+
+    /** Mengambil data terbaru dari server. Aman dipanggil berulang. */
+    suspend fun refresh(): Result<Unit>
+
+    /** Mengosongkan data (saat login atau keluar) supaya tidak bocor ke akun berikutnya. */
+    fun clear()
 }

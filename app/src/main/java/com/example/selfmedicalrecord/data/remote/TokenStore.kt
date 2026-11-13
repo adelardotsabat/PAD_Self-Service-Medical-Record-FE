@@ -12,10 +12,16 @@ class TokenStore(context: Context) {
     private val prefs = context.applicationContext
         .getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
 
-    fun save(token: String, role: String? = null, name: String? = null) = prefs.edit {
+    fun save(
+        token: String,
+        role: String? = null,
+        name: String? = null,
+        email: String? = null
+    ) = prefs.edit {
         putString(KEY_TOKEN, token)
         putString(KEY_ROLE, role)
         putString(KEY_NAME, name)
+        putString(KEY_EMAIL, email)
     }
 
     /** "ADMIN" / "USER" dari backend, atau null bila tidak diketahui. */
@@ -24,6 +30,8 @@ class TokenStore(context: Context) {
     fun isAdmin(): Boolean = role().equals(ROLE_ADMIN, ignoreCase = true)
 
     fun name(): String? = prefs.getString(KEY_NAME, null)
+
+    fun email(): String? = prefs.getString(KEY_EMAIL, null)
 
     fun token(): String? = prefs.getString(KEY_TOKEN, null)
 
@@ -36,6 +44,7 @@ class TokenStore(context: Context) {
         const val KEY_TOKEN = "token"
         const val KEY_ROLE = "role"
         const val KEY_NAME = "name"
+        const val KEY_EMAIL = "email"
         const val ROLE_ADMIN = "ADMIN"
     }
 }

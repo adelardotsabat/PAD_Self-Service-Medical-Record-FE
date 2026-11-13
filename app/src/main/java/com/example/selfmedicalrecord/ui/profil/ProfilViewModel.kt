@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.selfmedicalrecord.data.auth.AuthRepository
 import com.example.selfmedicalrecord.data.ServiceLocator
-import com.example.selfmedicalrecord.data.profile.FakeProfileRepository
 import com.example.selfmedicalrecord.data.profile.ProfileRepository
 import com.example.selfmedicalrecord.data.profile.UserProfile
 import kotlinx.coroutines.channels.Channel
@@ -14,12 +13,17 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
 class ProfilViewModel(
-    profileRepository: ProfileRepository = FakeProfileRepository(),
+    private val profileRepository: ProfileRepository = ServiceLocator.profileRepository,
     private val authRepository: AuthRepository = ServiceLocator.authRepository
 ) : ViewModel() {
 
     /** Profil terkini; kartu di tab Profil ikut berubah saat Kelola Profil menyimpan. */
     val profile: StateFlow<UserProfile> = profileRepository.profile
+
+    init {
+        // Ambil data terbaru dari server; kartu langsung ikut berubah lewat StateFlow di atas.
+        viewModelScope.launch { profileRepository.refresh() }
+    }
 
     // Kejadian sekali: selesai keluar -> Fragment membuka layar Welcome.
     private val _loggedOut = Channel<Unit>(Channel.BUFFERED)
