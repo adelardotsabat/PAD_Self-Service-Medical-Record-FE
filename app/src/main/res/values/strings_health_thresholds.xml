@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Kategori tekanan darah "darurat" (di atas 180/120), mengikuti status URGENT di backend -->
+    <string name="bp_urgent">Sangat Tinggi</string>
+</resources>

@@ -93,7 +93,6 @@ class HasilBmiActivity : AppCompatActivity() {
         BmiCategory.UNDERWEIGHT -> R.string.result_note_underweight
         BmiCategory.IDEAL -> R.string.result_note_ideal
         BmiCategory.OVERWEIGHT -> R.string.result_note_overweight
-        BmiCategory.OBESE -> R.string.result_note_obese
     }
 
     companion object {

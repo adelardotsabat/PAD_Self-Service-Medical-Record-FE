@@ -81,6 +81,7 @@ class BerandaViewModel(
 
     init {
         viewModelScope.launch { profileRepository.refresh() }
+        viewModelScope.launch { repository.refresh() }
     }
 
     private val bmiPeriod = MutableStateFlow(ChartPeriod.WEEK)

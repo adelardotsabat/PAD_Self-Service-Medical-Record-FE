@@ -15,4 +15,10 @@ interface HealthRepository {
 
     suspend fun addBodyRecord(record: BodyRecord): Result<Unit>
     suspend fun addBloodPressureRecord(record: BloodPressureRecord): Result<Unit>
+
+    /** Mengambil data terbaru dari server. Aman dipanggil berulang. */
+    suspend fun refresh(): Result<Unit>
+
+    /** Mengosongkan data (saat login atau keluar) supaya tidak bocor ke akun berikutnya. */
+    fun clear()
 }

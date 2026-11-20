@@ -39,6 +39,10 @@ class FakeHealthRepository(seedDemoData: Boolean = true) : HealthRepository {
         return Result.success(Unit)
     }
 
+    override suspend fun refresh(): Result<Unit> = Result.success(Unit)
+
+    override fun clear() = Unit
+
     private fun seed() {
         val today = DayUtils.todayEpochDay()
         val weights = listOf(46.6f, 47.0f, 46.8f, 47.6f, 47.4f, 48.0f, 47.6f)
