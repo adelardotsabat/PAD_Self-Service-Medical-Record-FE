@@ -75,10 +75,26 @@ class KelolaProfilActivity : AppCompatActivity() {
         val profile = viewModel.initialProfile
         binding.etName.setText(profile.fullName)
         // false = jangan menyaring daftar pilihan dropdown dengan teks ini
-        binding.actGender.setText(profile.gender.orEmpty(), false)
+        binding.actGender.setText(genderLabel(profile.gender), false)
         binding.etNik.setText(profile.nik)
         binding.etAddress.setText(profile.address)
         binding.etEmail.setText(profile.email)
+        // Email adalah identitas akun; mengubahnya butuh verifikasi ulang yang belum didukung.
+        binding.etEmail.isEnabled = false
+    }
+
+    /** Kode dari server ("MALE"/"FEMALE") -> teks yang tampil di dropdown. */
+    private fun genderLabel(code: String?): String = when (code) {
+        "MALE" -> getString(R.string.gender_male)
+        "FEMALE" -> getString(R.string.gender_female)
+        else -> ""
+    }
+
+    /** Teks dropdown -> kode untuk server; null bila belum dipilih. */
+    private fun genderCode(label: String?): String? = when (label) {
+        getString(R.string.gender_male) -> "MALE"
+        getString(R.string.gender_female) -> "FEMALE"
+        else -> null
     }
 
     private fun showDatePicker() {
@@ -100,7 +116,7 @@ class KelolaProfilActivity : AppCompatActivity() {
         hideKeyboard()
         viewModel.save(
             name = binding.etName.text?.toString().orEmpty(),
-            gender = binding.actGender.text?.toString()?.takeIf { it.isNotBlank() },
+            gender = genderCode(binding.actGender.text?.toString()),
             nik = binding.etNik.text?.toString().orEmpty(),
             address = binding.etAddress.text?.toString().orEmpty(),
             email = binding.etEmail.text?.toString().orEmpty()

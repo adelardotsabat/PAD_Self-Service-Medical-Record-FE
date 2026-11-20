@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_network">Tidak dapat terhubung ke server. Periksa koneksi dan pastikan server berjalan</string>
+    <string name="error_email_not_verified">Email belum diverifikasi. Selesaikan verifikasi sebelum masuk</string>
+    <string name="error_too_many_attempts">Terlalu banyak percobaan. Coba lagi beberapa saat lagi</string>
+</resources>

@@ -33,10 +33,6 @@ class PusatBantuanActivity : AppCompatActivity() {
         binding.rvFaq.adapter = adapter
         binding.btnBack.setOnClickListener { finish() }
         binding.etSearch.doAfterTextChanged { viewModel.onQueryChanged(it?.toString().orEmpty()) }
-        // TODO: arahkan ke kanal bantuan sebenarnya (email/WhatsApp) setelah tim menentukan.
-        binding.btnContact.setOnClickListener {
-            Snackbar.make(binding.root, R.string.feature_coming_soon, Snackbar.LENGTH_SHORT).show()
-        }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {

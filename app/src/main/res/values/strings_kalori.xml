@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Scan / Deteksi Kalori -->
+    <string name="scan_title">Deteksi Kalori</string>
+    <string name="scan_action_gallery">Pilih foto dari galeri</string>
+    <string name="scan_action_capture">Ambil foto</string>
+    <string name="scan_action_flash">Nyalakan atau matikan flash</string>
+    <string name="scan_permission_message">Izin kamera dibutuhkan untuk memotret makanan. Kamu juga bisa memilih foto dari galeri.</string>
+    <string name="scan_permission_grant">Izinkan Kamera</string>
+    <string name="scan_permission_settings">Buka Pengaturan</string>
+    <string name="scan_error_capture">Gagal mengambil foto. Coba lagi.</string>
+    <string name="scan_error_no_flash">Perangkat ini tidak punya flash.</string>
+
+    <!-- Hasil Estimasi Kalori -->
+    <string name="kalori_result_title">Hasil Estimasi</string>
+    <string name="kalori_result_subtitle">Estimasi kalori dari foto makanan</string>
+    <string name="kalori_result_total_label">Total Estimasi</string>
+    <string name="kalori_result_total_value">~%1$d – %2$d kkal</string>
+    <string name="kalori_result_accuracy">%1$d%% Akurat</string>
+    <string name="kalori_result_detail_title">Detail Makanan</string>
+    <string name="kalori_result_item_value">~%1$d–%2$d kkal</string>
+    <string name="kalori_result_photo_description">Foto makanan yang dipindai</string>
+    <string name="kalori_result_error">Estimasi kalori gagal dimuat</string>
+    <string name="kalori_result_retry">Coba lagi</string>
+</resources>

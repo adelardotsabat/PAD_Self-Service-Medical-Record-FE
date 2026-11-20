@@ -5,7 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.selfmedicalrecord.R
 import com.example.selfmedicalrecord.data.auth.AuthRepository
-import com.example.selfmedicalrecord.data.auth.FakeAuthRepository
+import com.example.selfmedicalrecord.data.ServiceLocator
+import com.example.selfmedicalrecord.data.remote.ApiException
+import com.example.selfmedicalrecord.data.remote.NetworkException
 import com.example.selfmedicalrecord.utils.Validators
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -27,7 +29,7 @@ data class LoginUiState(
  * Saat API siap, ganti default ini (atau pakai ViewModelProvider.Factory / Hilt).
  */
 class LoginViewModel(
-    private val repository: AuthRepository = FakeAuthRepository()
+    private val repository: AuthRepository = ServiceLocator.authRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginUiState())
@@ -58,10 +60,14 @@ class LoginViewModel(
                 .onSuccess {
                     _uiState.update { state -> state.copy(isLoading = false, isSuccess = true) }
                 }
-                .onFailure {
-                    _uiState.update { state ->
-                        state.copy(isLoading = false, formError = R.string.error_login_failed)
+                .onFailure { error ->
+                    val message = when {
+                        error is NetworkException -> R.string.error_network
+                        error is ApiException && error.httpCode == 403 -> R.string.error_email_not_verified
+                        error is ApiException && error.httpCode == 429 -> R.string.error_too_many_attempts
+                        else -> R.string.error_login_failed
                     }
+                    _uiState.update { state -> state.copy(isLoading = false, formError = message) }
                 }
         }
     }

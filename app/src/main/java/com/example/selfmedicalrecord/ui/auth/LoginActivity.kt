@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.selfmedicalrecord.MainActivity
 import com.example.selfmedicalrecord.R
 import com.example.selfmedicalrecord.databinding.ActivityLoginBinding
 import com.example.selfmedicalrecord.utils.applySystemBarInsetsAsPadding
@@ -31,8 +30,6 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.root.applySystemBarInsetsAsPadding()
-
-        // TODO: jika sesi login masih valid (token tersimpan), langsung buka MainActivity.
 
         setupListeners()
 
@@ -88,9 +85,7 @@ class LoginActivity : AppCompatActivity() {
         binding.btnLogin.setText(if (state.isLoading) R.string.action_loading else R.string.action_login)
 
         if (state.isSuccess) {
-            val intent = Intent(this, MainActivity::class.java)
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            startActivity(intent)
+            startActivity(SessionRouter.homeIntent(this))
             finish()
         }
     }

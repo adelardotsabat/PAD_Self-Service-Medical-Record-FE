@@ -1,5 +1,6 @@
 package com.example.selfmedicalrecord
 
+import android.content.Intent
 import android.os.Bundle
 import android.transition.AutoTransition
 import android.transition.TransitionManager
@@ -19,12 +20,17 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.navOptions
 import com.example.selfmedicalrecord.databinding.ActivityMainBinding
+import com.example.selfmedicalrecord.ui.scan.ScanKaloriActivity
 
 class MainActivity : AppCompatActivity() {
 
-    /** Satu tab di bottom bar: tujuan navigasi + 3 view yang perlu diubah saat aktif/inaktif. */
+    /**
+     * Satu tab di bottom bar: tujuan navigasi + 3 view yang perlu diubah saat aktif/inaktif.
+     * [destinationId] null artinya tab ini bukan tujuan NavController, melainkan membuka Activity
+     * layar penuh sendiri (tab Scan), jadi tidak pernah berstatus aktif.
+     */
     private class Tab(
-        val destinationId: Int,
+        val destinationId: Int?,
         val container: LinearLayout,
         val icon: ImageView,
         val label: TextView
@@ -87,13 +93,13 @@ class MainActivity : AppCompatActivity() {
         tabs = listOf(
             Tab(R.id.navigation_home, nav.navHome, nav.iconHome, nav.textHome),
             Tab(R.id.navigation_catat, nav.navRecord, nav.iconRecord, nav.textRecord),
-            Tab(R.id.navigation_scan, nav.navScan, nav.iconScan, nav.textScan),
+            Tab(null, nav.navScan, nav.iconScan, nav.textScan),
             Tab(R.id.navigation_riwayat, nav.navHistory, nav.iconHistory, nav.textHistory),
             Tab(R.id.navigation_profil, nav.navProfile, nav.iconProfile, nav.textProfile)
         )
 
         tabs.forEach { tab ->
-            tab.container.setOnClickListener { navigateToTab(tab.destinationId) }
+            tab.container.setOnClickListener { onTabClicked(tab) }
         }
 
         // Sumber kebenaran tampilan tab = destinasi NavController, bukan klik.
@@ -101,6 +107,15 @@ class MainActivity : AppCompatActivity() {
         // Listener ini juga langsung dipanggil dengan destinasi saat ini, jadi tab awal otomatis aktif.
         navController.addOnDestinationChangedListener { _, destination, _ ->
             tabs.firstOrNull { it.destinationId == destination.id }?.let(::updateActiveTab)
+        }
+    }
+
+    private fun onTabClicked(tab: Tab) {
+        val destinationId = tab.destinationId
+        if (destinationId == null) {
+            startActivity(Intent(this, ScanKaloriActivity::class.java))
+        } else {
+            navigateToTab(destinationId)
         }
     }
 

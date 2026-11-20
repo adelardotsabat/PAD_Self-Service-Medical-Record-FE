@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
+        android:name=".SelfMedicalRecordApp"
         android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -40,6 +48,11 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity
+
+        android:name=".ui.result.HasilBmiActivity"
+        android:exported="false" />
+
+        <activity
             android:name=".ui.profil.KelolaProfilActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
@@ -55,9 +68,33 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity
+            android:name=".ui.scan.ScanKaloriActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.result.HasilKaloriActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".MainActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ui.riwayat.InputRiwayatActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+
+        <!-- Admin -->
+        <activity android:name=".ui.admin.AdminDashboardActivity" android:exported="false" />
+        <activity android:name=".ui.admin.EndpointActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ui.admin.IntegrationStatusActivity" android:exported="false" />
+        <activity android:name=".ui.admin.ActivityLogActivity" android:exported="false" />
+        <activity android:name=".ui.admin.UserListActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ui.admin.UserActivityActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ui.admin.AddUserActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

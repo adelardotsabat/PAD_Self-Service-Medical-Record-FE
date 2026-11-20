@@ -130,7 +130,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-bold"
-                    android:text="45"
+                    tools:text="45"
                     android:textColor="@color/text_primary"
                     android:textSize="28sp" />
 
@@ -192,7 +192,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-bold"
-                    android:text="160"
+                    tools:text="160"
                     android:textColor="@color/text_primary"
                     android:textSize="28sp" />
 
@@ -254,6 +254,7 @@
                     android:background="@drawable/bg_pill_active"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="4dp"
+                    android:id="@+id/pillBmiWeek"
                     android:text="Mgg"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
@@ -265,6 +266,7 @@
                     android:background="@drawable/bg_pill_inactive"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="4dp"
+                    android:id="@+id/pillBmiMonth"
                     android:text="Bln"
                     android:textColor="@color/text_secondary"
                     android:textSize="12sp" />
@@ -276,6 +278,7 @@
                     android:background="@drawable/bg_pill_inactive"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="4dp"
+                    android:id="@+id/pillBmi3Months"
                     android:text="3 Bln"
                     android:textColor="@color/text_secondary"
                     android:textSize="12sp" />
@@ -287,6 +290,7 @@
                     android:background="@drawable/bg_pill_inactive"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="4dp"
+                    android:id="@+id/pillBmi6Months"
                     android:text="6 Bln"
                     android:textColor="@color/text_secondary"
                     android:textSize="12sp" />
@@ -313,7 +317,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-bold"
-                    android:text="18,6 kg/m²"
+                    tools:text="18,6 kg/m²"
                     android:textColor="@color/text_primary"
                     android:textSize="22sp" />
 
@@ -340,7 +344,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="6dp"
-                        android:text="Stabil"
+                        tools:text="Stabil"
                         android:textColor="@color/badge_green_text"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -350,7 +354,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:text="Rata-rata minggu ini"
+                android:id="@+id/tvBmiSubtitle"
+                tools:text="Rata-rata minggu ini"
                 android:textColor="@color/text_muted"
                 android:textSize="12sp" />
 
@@ -409,6 +414,7 @@
                     android:background="@drawable/bg_pill_active"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="4dp"
+                    android:id="@+id/pillBpWeek"
                     android:text="Mgg"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
@@ -420,6 +426,7 @@
                     android:background="@drawable/bg_pill_inactive"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="4dp"
+                    android:id="@+id/pillBpMonth"
                     android:text="Bln"
                     android:textColor="@color/text_secondary"
                     android:textSize="12sp" />
@@ -431,6 +438,7 @@
                     android:background="@drawable/bg_pill_inactive"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="4dp"
+                    android:id="@+id/pillBp3Months"
                     android:text="3 Bln"
                     android:textColor="@color/text_secondary"
                     android:textSize="12sp" />
@@ -442,6 +450,7 @@
                     android:background="@drawable/bg_pill_inactive"
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="4dp"
+                    android:id="@+id/pillBp6Months"
                     android:text="6 Bln"
                     android:textColor="@color/text_secondary"
                     android:textSize="12sp" />
@@ -468,7 +477,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-bold"
-                    android:text="132/80 mmHg"
+                    tools:text="132/80 mmHg"
                     android:textColor="@color/text_primary"
                     android:textSize="22sp" />
 
@@ -495,7 +504,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="6dp"
-                        android:text="Normal"
+                        tools:text="Normal"
                         android:textColor="@color/badge_green_text"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -505,7 +514,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:text="Pembacaan terbaru hari ini"
+                android:id="@+id/tvBpSubtitle"
+                tools:text="Pembacaan terbaru hari ini"
                 android:textColor="@color/text_muted"
                 android:textSize="12sp" />
 

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Umum -->
+    <string name="admin_cancel">Batal</string>
+    <string name="admin_delete">Hapus</string>
+    <string name="admin_active">Aktif</string>
+    <string name="admin_inactive">Nonaktif</string>
+    <string name="admin_default_name">Admin</string>
+    <string name="admin_error_load_failed">Gagal memuat data</string>
+    <string name="admin_error_save_failed">Gagal menyimpan. Coba lagi</string>
+
+    <!-- Dashboard -->
+    <string name="admin_greeting">Hai, %1$s</string>
+    <string name="admin_role_title">Administrator</string>
+    <string name="admin_notifications">Notifikasi</string>
+    <string name="admin_status_running">Sistem Berjalan</string>
+    <string name="admin_status_optimal">Status: Optimal</string>
+    <string name="admin_status_degraded">Status: Terganggu</string>
+    <string name="admin_uptime">%1$s Uptime</string>
+    <string name="admin_menu_title">Menu Administrasi</string>
+    <string name="admin_menu_config">Kelola Konfigurasi</string>
+    <string name="admin_menu_config_desc">Endpoint &amp; API Key</string>
+    <string name="admin_menu_monitor">Monitoring Sistem</string>
+    <string name="admin_menu_monitor_desc">Log real-time &amp; Data</string>
+    <string name="admin_menu_log">Kelola Log</string>
+    <string name="admin_menu_log_desc">Catatan transaksi data</string>
+    <string name="admin_menu_user">Kelola User</string>
+    <string name="admin_menu_user_desc">Akses &amp; Peran pengguna</string>
+    <string name="admin_api_connection">Koneksi API</string>
+    <string name="admin_last_sync">Terakhir sinkronisasi: %1$s</string>
+    <string name="admin_logout">Keluar</string>
+
+    <!-- Atur Endpoint -->
+    <string name="admin_endpoint_title">Atur Endpoint</string>
+    <string name="admin_endpoint_subtitle">Konfigurasi URL Server dan Kunci Integrasi Medis</string>
+    <string name="admin_label_url">Server URL</string>
+    <string name="admin_label_port">Port Koneksi</string>
+    <string name="admin_label_api_key">API Key Integrasi</string>
+    <string name="admin_endpoint_enable">Aktifkan Koneksi</string>
+    <string name="admin_endpoint_enable_desc">Hubungkan langsung ke server utama Kementerian Kesehatan</string>
+    <string name="admin_endpoint_save">Simpan Konfigurasi</string>
+    <string name="admin_endpoint_ping">Uji Coba Koneksi (Ping)</string>
+    <string name="admin_endpoint_pinging">Menguji…</string>
+    <string name="admin_endpoint_saved">Konfigurasi disimpan</string>
+    <string name="admin_endpoint_ping_ok">Koneksi berhasil</string>
+    <string name="admin_endpoint_ping_failed">Koneksi gagal. Periksa pengaturan dan pastikan koneksi aktif</string>
+    <string name="admin_error_url_required">URL server wajib diisi</string>
+    <string name="admin_error_url_invalid">URL harus diawali http:// atau https:// dan valid</string>
+    <string name="admin_error_port_required">Port wajib diisi</string>
+    <string name="admin_error_port_invalid">Port harus berupa angka 1–65535</string>
+    <string name="admin_error_api_key_required">API key wajib diisi</string>
+
+    <!-- Status Integrasi -->
+    <string name="admin_integration_title">Status Integrasi</string>
+    <string name="admin_integration_subtitle">Monitor koneksi sistem medis eksternal</string>
+    <string name="admin_stat_total">Total Endpoint</string>
+    <string name="admin_stat_connected">Terhubung</string>
+    <string name="admin_stat_failed">Gagal</string>
+    <string name="admin_state_connected">Terhubung</string>
+    <string name="admin_state_failed">Gagal</string>
+    <string name="admin_state_waiting">Menunggu</string>
+    <string name="admin_integration_last_sync">Sinkronisasi Terakhir: %1$s</string>
+
+    <!-- Log Aktivitas -->
+    <string name="admin_log_title">Log Aktivitas</string>
+    <string name="admin_log_subtitle">Jejak audit sistem dan tindakan administrator</string>
+    <string name="admin_filter_all">Semua</string>
+    <string name="admin_filter_login">Login</string>
+    <string name="admin_filter_data">Data</string>
+    <string name="admin_filter_system">Sistem</string>
+    <string name="admin_tag_error">Error</string>
+    <string name="admin_log_meta">%1$s • %2$s</string>
+    <string name="admin_log_empty">Belum ada aktivitas</string>
+
+    <!-- Daftar User -->
+    <string name="admin_user_list_title">Daftar User</string>
+    <string name="admin_user_list_subtitle">Kelola kredensial dan hak akses klinis</string>
+    <string name="admin_user_search_hint">Cari pengguna…</string>
+    <string name="admin_user_add">Tambah</string>
+    <string name="admin_role_admin">Admin</string>
+    <string name="admin_role_user">User</string>
+    <string name="admin_user_delete">Hapus pengguna</string>
+    <string name="admin_user_delete_title">Hapus pengguna?</string>
+    <string name="admin_user_delete_message">%1$s akan dihapus dari daftar.</string>
+    <string name="admin_user_empty">Pengguna tidak ditemukan</string>
+    <string name="admin_user_activity_link">Lihat aktivitas pengguna</string>
+    <string name="admin_more">Menu pengguna</string>
+
+    <!-- Data Pengguna -->
+    <string name="admin_user_activity_title">Data Pengguna</string>
+    <string name="admin_user_activity_subtitle">Monitor aktivitas pengguna dan hak akses aktif</string>
+    <string name="admin_user_activity_search_hint">Cari nama atau peran…</string>
+
+    <!-- Tambah User Baru -->
+    <string name="admin_add_user_title">Tambah User Baru</string>
+    <string name="admin_add_user_subtitle">Buat profil pengguna dan atur tingkat akses sistem</string>
+    <string name="admin_section_profile">Profil Pengguna</string>
+    <string name="admin_section_security">Keamanan</string>
+    <string name="admin_section_access">Akses Sistem</string>
+    <string name="admin_section_permissions">Hak Akses</string>
+    <string name="admin_label_name">Nama Lengkap</string>
+    <string name="admin_label_role">Pilih Peran Akses</string>
+    <string name="admin_permission_admin">Akses admin</string>
+    <string name="admin_permission_patient">Akses pasien</string>
+    <string name="admin_user_save">Simpan Pengguna</string>
+    <string name="admin_user_saved">Pengguna ditambahkan</string>
+    <string name="admin_error_email_taken">Email sudah terdaftar</string>
+</resources>

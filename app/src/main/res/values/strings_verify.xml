@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="verify_title">Verifikasi Email</string>
+    <string name="verify_subtitle">Kami mengirim kode 6 digit ke %1$s. Masukkan kode tersebut untuk melanjutkan.</string>
+    <string name="label_verify_code">Kode Verifikasi</string>
+    <string name="hint_verify_code">Masukkan 6 digit kode</string>
+    <string name="action_verify">Verifikasi</string>
+    <string name="verify_resend">Kirim ulang kode</string>
+    <string name="verify_resend_wait">Kirim ulang kode dalam %1$d detik</string>
+
+    <string name="error_code_required">Kode wajib diisi</string>
+    <string name="error_code_format">Kode harus 6 digit angka</string>
+    <string name="error_code_invalid">Kode salah atau sudah kedaluwarsa</string>
+    <string name="error_email_taken">Email sudah terdaftar</string>
+    <string name="error_resend_wait">Tunggu sebentar sebelum meminta kode baru</string>
+    <string name="error_email_send_failed">Gagal mengirim email verifikasi. Coba lagi</string>
+</resources>

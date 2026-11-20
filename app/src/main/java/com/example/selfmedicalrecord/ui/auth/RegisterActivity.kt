@@ -60,7 +60,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun setupListeners() {
-        // Catatan: di langkah 2 akun sudah terbuat, jadi back keluar dari layar register.
+        // Catatan: setelah langkah 1 akun sudah terbuat, jadi back keluar dari layar register.
         binding.btnBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
         binding.tvLogin.setOnClickListener { finish() }
 
@@ -81,6 +81,18 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
+        binding.etCode.doAfterTextChanged { viewModel.onInputChanged() }
+        binding.etCode.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                submitCode()
+                true
+            } else {
+                false
+            }
+        }
+        binding.btnVerify.setOnClickListener { submitCode() }
+        binding.tvResend.setOnClickListener { viewModel.resendCode() }
+
         binding.btnRegister.setOnClickListener { submitAccount() }
         binding.btnSave.setOnClickListener { submitProfile() }
 
@@ -97,12 +109,23 @@ class RegisterActivity : AppCompatActivity() {
         )
     }
 
+    private fun submitCode() {
+        hideKeyboard()
+        viewModel.submitCode(binding.etCode.text?.toString().orEmpty())
+    }
+
     private fun submitProfile() {
         hideKeyboard()
+        // Dropdown menampilkan teks Indonesia; backend memakai MALE / FEMALE.
+        val gender = when (binding.actGender.text?.toString()) {
+            getString(R.string.gender_male) -> "MALE"
+            getString(R.string.gender_female) -> "FEMALE"
+            else -> null
+        }
         viewModel.submitProfile(
             fullName = binding.etFullName.text?.toString().orEmpty(),
             nik = binding.etNik.text?.toString().orEmpty(),
-            gender = binding.actGender.text?.toString()?.takeIf { it.isNotBlank() }
+            gender = gender
         )
     }
 
@@ -122,8 +145,11 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun render(state: RegisterUiState) {
         val isAccountStep = state.step == RegisterStep.ACCOUNT
+        val isVerifyStep = state.step == RegisterStep.VERIFY
+        val isProfileStep = state.step == RegisterStep.PROFILE
         binding.groupAccount.isVisible = isAccountStep
-        binding.groupProfile.isVisible = !isAccountStep
+        binding.groupVerify.isVisible = isVerifyStep
+        binding.groupProfile.isVisible = isProfileStep
 
         // Langkah 1
         binding.tilEmail.error = state.emailError?.let { getString(it) }
@@ -135,14 +161,31 @@ class RegisterActivity : AppCompatActivity() {
             if (state.isLoading) R.string.action_loading else R.string.action_register
         )
 
-        // Langkah 2
+        // Langkah 2 (verifikasi)
+        binding.tvVerifySubtitle.text = getString(R.string.verify_subtitle, state.verifyEmail)
+        binding.tilCode.error = state.codeError?.let { getString(it) }
+        binding.tvVerifyError.showMessage(state.formError.takeIf { isVerifyStep })
+        binding.btnVerify.isEnabled = !state.isLoading
+        binding.btnVerify.setText(
+            if (state.isLoading) R.string.action_loading else R.string.action_verify
+        )
+        val canResend = state.resendSeconds == 0
+        binding.tvResend.isEnabled = canResend
+        binding.tvResend.alpha = if (canResend) 1f else 0.5f
+        binding.tvResend.text = if (canResend) {
+            getString(R.string.verify_resend)
+        } else {
+            getString(R.string.verify_resend_wait, state.resendSeconds)
+        }
+
+        // Langkah 3 (data diri)
         binding.tilFullName.error = state.fullNameError?.let { getString(it) }
         binding.tilNik.error = state.nikError?.let { getString(it) }
         binding.tilBirthDate.error = state.birthDateError?.let { getString(it) }
         binding.etBirthDate.setText(
             state.birthDateMillis?.let { dateFormat.format(Date(it)) }.orEmpty()
         )
-        binding.tvProfileError.showMessage(state.formError.takeIf { !isAccountStep })
+        binding.tvProfileError.showMessage(state.formError.takeIf { isProfileStep })
         binding.btnSave.isEnabled = !state.isLoading
         binding.btnSave.setText(
             if (state.isLoading) R.string.action_loading else R.string.action_save

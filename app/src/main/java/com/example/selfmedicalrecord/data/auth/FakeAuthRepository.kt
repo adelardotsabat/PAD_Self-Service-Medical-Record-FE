@@ -24,12 +24,36 @@ class FakeAuthRepository : AuthRepository {
         return Result.success(Unit)
     }
 
+    override suspend fun verifyEmail(email: String, code: String): Result<Unit> {
+        delay(FAKE_LATENCY_MS)
+        return Result.success(Unit)
+    }
+
+    override suspend fun resendVerificationCode(email: String): Result<Unit> {
+        delay(FAKE_LATENCY_MS)
+        return Result.success(Unit)
+    }
+
     override suspend fun saveProfile(profile: PatientProfile): Result<Unit> {
         delay(FAKE_LATENCY_MS)
         return Result.success(Unit)
     }
 
     override suspend fun requestPasswordReset(email: String): Result<Unit> {
+        delay(FAKE_LATENCY_MS)
+        return Result.success(Unit)
+    }
+
+    override suspend fun verifyPasswordResetCode(email: String, code: String): Result<String> {
+        delay(FAKE_LATENCY_MS)
+        return Result.success("fake-reset-token")
+    }
+
+    override suspend fun resetPassword(
+        email: String,
+        resetToken: String,
+        newPassword: String
+    ): Result<Unit> {
         delay(FAKE_LATENCY_MS)
         return Result.success(Unit)
     }

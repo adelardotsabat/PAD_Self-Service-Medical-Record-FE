@@ -4,7 +4,7 @@ import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.selfmedicalrecord.R
-import com.example.selfmedicalrecord.data.profile.FakeProfileRepository
+import com.example.selfmedicalrecord.data.ServiceLocator
 import com.example.selfmedicalrecord.data.profile.ProfileRepository
 import com.example.selfmedicalrecord.data.profile.UserProfile
 import com.example.selfmedicalrecord.utils.Validators
@@ -29,7 +29,7 @@ data class KelolaProfilUiState(
 )
 
 class KelolaProfilViewModel(
-    private val repository: ProfileRepository = FakeProfileRepository()
+    private val repository: ProfileRepository = ServiceLocator.profileRepository
 ) : ViewModel() {
 
     /** Profil saat layar dibuka, dipakai Activity untuk mengisi form pertama kali. */
@@ -59,7 +59,8 @@ class KelolaProfilViewModel(
 
         val nameError = Validators.fullName(name)
         val nikError = Validators.nik(nik)
-        val emailError = Validators.email(email)
+        // Email tidak bisa diubah dari layar ini (backend meminta verifikasi ulang), jadi tidak divalidasi.
+        val emailError: Int? = null
         val birthError = if (state.birthDateMillis == null) R.string.error_birth_date_required else null
         if (nameError != null || nikError != null || emailError != null || birthError != null) {
             _uiState.update {
