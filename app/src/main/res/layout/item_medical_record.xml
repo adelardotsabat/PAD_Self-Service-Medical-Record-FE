@@ -38,6 +38,19 @@
             android:textColor="@color/white"
             android:textSize="13sp"
             tools:text="20-09-2026" />
+
+        <!-- Hanya tampil untuk catatan mandiri -->
+        <ImageButton
+            android:id="@+id/btnEdit"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/bg_circle_translucent_white"
+            android:contentDescription="@string/riwayat_edit_desc"
+            android:padding="6dp"
+            android:src="@drawable/ic_edit"
+            android:visibility="gone"
+            tools:visibility="visible" />
     </LinearLayout>
 
     <LinearLayout
@@ -50,6 +63,7 @@
         android:paddingBottom="16dp">
 
         <LinearLayout
+            android:id="@+id/rowDiagnosis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -86,6 +100,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/rowComplaint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -122,6 +137,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/rowMedicine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"

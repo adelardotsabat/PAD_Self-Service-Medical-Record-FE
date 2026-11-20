@@ -81,6 +81,11 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
+        <activity
+            android:name=".ui.riwayat.InputRiwayatActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
 
         <!-- Admin -->
         <activity android:name=".ui.admin.AdminDashboardActivity" android:exported="false" />

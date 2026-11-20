@@ -7,9 +7,11 @@ import com.example.selfmedicalrecord.data.auth.AuthRepository
 import com.example.selfmedicalrecord.data.auth.RemoteAuthRepository
 import com.example.selfmedicalrecord.data.food.FakeFoodCalorieRepository
 import com.example.selfmedicalrecord.data.food.FoodCalorieRepository
-import com.example.selfmedicalrecord.data.health.FakeHealthRepository
 import com.example.selfmedicalrecord.data.health.HealthRepository
+import com.example.selfmedicalrecord.data.health.RemoteHealthRepository
 import com.example.selfmedicalrecord.data.profile.ProfileRepository
+import com.example.selfmedicalrecord.data.record.MedicalRecordRepository
+import com.example.selfmedicalrecord.data.record.RemoteMedicalRecordRepository
 import com.example.selfmedicalrecord.data.profile.RemoteProfileRepository
 import com.example.selfmedicalrecord.data.remote.ApiClient
 import com.example.selfmedicalrecord.data.remote.ApiService
@@ -33,7 +35,10 @@ object ServiceLocator {
 
     // Sudah tersambung ke backend: login, register, verifikasi, lupa sandi, logout.
     val authRepository: AuthRepository by lazy {
-        RemoteAuthRepository(api, tokenStore, onSessionChanged = { profileRepository.clear() })
+        RemoteAuthRepository(api, tokenStore, onSessionChanged = {
+            profileRepository.clear()
+            healthRepository.clear()
+        })
     }
 
     // Sudah tersambung ke backend: data akun (/me) dan simpan profil.
@@ -42,7 +47,12 @@ object ServiceLocator {
     // Backend belum punya endpoint admin, jadi masih Fake.
     val adminRepository: AdminRepository by lazy { FakeAdminRepository() }
 
+    // Sudah tersambung ke backend: berat/tinggi (BMI) dan tensi lewat /health-records.
+    val healthRepository: HealthRepository by lazy { RemoteHealthRepository(api) }
+
+    // Sudah tersambung ke backend: catatan mandiri + catatan klinik (OpenMRS).
+    val medicalRecordRepository: MedicalRecordRepository by lazy { RemoteMedicalRecordRepository(api) }
+
     // Masih Fake sampai tahap berikutnya.
-    val healthRepository: HealthRepository by lazy { FakeHealthRepository(seedDemoData = true) }
     val foodCalorieRepository: FoodCalorieRepository by lazy { FakeFoodCalorieRepository() }
 }

@@ -84,3 +84,67 @@ data class UserDto(
 data class RoleDto(
     @SerializedName("role_name") val roleName: String? = null
 )
+
+/** Satu pengukuran dari /health-records. Pengukuran BMI mengisi tinggi+berat, tensi mengisi sistolik+diastolik. */
+data class HealthRecordDto(
+    @SerializedName("health_record_id") val id: Long = 0,
+    /** Server mengirim angka desimal sebagai teks ("160.00"); Gson mengubahnya ke Float. */
+    val height: Float? = null,
+    val weight: Float? = null,
+    val systolic: Int? = null,
+    val diastolic: Int? = null,
+    /** Tanggal pengukuran yyyy-MM-dd menurut zona waktu Asia/Jakarta. */
+    @SerializedName("recorded_date") val recordedDate: String? = null
+)
+
+/** Bungkus paginasi Laravel: daftar ada di `data`. */
+data class PageDto<T>(
+    val data: List<T>? = null,
+    @SerializedName("current_page") val currentPage: Int = 1,
+    @SerializedName("last_page") val lastPage: Int = 1
+)
+
+/** Field null tidak ikut dikirim. Kirim pasangan (tinggi+berat) atau (sistolik+diastolik), tidak boleh sebagian. */
+data class CreateHealthRecordRequest(
+    val height: Float? = null,
+    val weight: Float? = null,
+    val systolic: Int? = null,
+    val diastolic: Int? = null,
+    /** ISO-8601 UTC, mis. 2026-11-13T05:00:00Z. */
+    @SerializedName("recorded_at") val recordedAt: String
+)
+
+/** Catatan mandiri dari /personal-medical-records. */
+data class PersonalRecordDto(
+    @SerializedName("personal_medical_record_id") val id: Long = 0,
+    /** yyyy-MM-dd */
+    @SerializedName("visit_date") val visitDate: String? = null,
+    @SerializedName("facility_name") val facilityName: String? = null,
+    val complaint: String? = null,
+    val medications: String? = null
+)
+
+data class PersonalRecordRequest(
+    @SerializedName("visit_date") val visitDate: String,
+    @SerializedName("facility_name") val facilityName: String,
+    val complaint: String,
+    val medications: String
+)
+
+/** Bungkus respons /medical-records: daftar ada di `data.data`. */
+data class ClinicRecordsData(
+    val data: List<ClinicEncounterDto>? = null
+)
+
+data class ClinicEncounterDto(
+    @SerializedName("encounter_uuid") val encounterUuid: String? = null,
+    @SerializedName("visit_date") val visitDate: String? = null,
+    @SerializedName("facility_name") val facilityName: String? = null,
+    val diagnosis: String? = null,
+    val complaint: String? = null,
+    val medications: List<ClinicMedicationDto>? = null
+)
+
+data class ClinicMedicationDto(
+    val drug: String? = null
+)

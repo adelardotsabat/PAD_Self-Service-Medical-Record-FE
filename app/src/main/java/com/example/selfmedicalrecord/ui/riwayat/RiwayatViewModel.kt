@@ -2,7 +2,7 @@ package com.example.selfmedicalrecord.ui.riwayat
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.selfmedicalrecord.data.record.FakeMedicalRecordRepository
+import com.example.selfmedicalrecord.data.ServiceLocator
 import com.example.selfmedicalrecord.data.record.MedicalRecord
 import com.example.selfmedicalrecord.data.record.MedicalRecordRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,8 +17,7 @@ data class RiwayatUiState(
 )
 
 class RiwayatViewModel(
-    // TODO: ambil dari ServiceLocator setelah branch self-assessment di-merge.
-    private val repository: MedicalRecordRepository = FakeMedicalRecordRepository()
+    private val repository: MedicalRecordRepository = ServiceLocator.medicalRecordRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(RiwayatUiState())
@@ -33,7 +32,7 @@ class RiwayatViewModel(
         viewModelScope.launch {
             repository.getRecords()
                 .onSuccess { list ->
-                    // Terbaru di atas.
+                    // Terbaru di atas; untuk tanggal yang sama urutan dari sumber dipertahankan.
                     _uiState.value = RiwayatUiState(
                         isLoading = false,
                         records = list.sortedByDescending { it.visitDateMillis }

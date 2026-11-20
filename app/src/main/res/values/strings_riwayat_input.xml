@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Daftar riwayat: kondisi kosong dan tombol tambah -->
+    <string name="riwayat_empty_title">Belum ada riwayat kesehatan</string>
+    <string name="riwayat_empty_message">Riwayat pemeriksaan dan pengobatan Anda akan muncul di sini setelah melakukan pemeriksaan di klinik.</string>
+    <string name="riwayat_add_desc">Tambah riwayat kesehatan</string>
+    <string name="riwayat_edit_desc">Ubah catatan</string>
+
+    <!-- Form Input Riwayat Kesehatan -->
+    <string name="riwayat_input_title">Input Riwayat Kesehatan</string>
+    <string name="riwayat_input_title_edit">Ubah Riwayat Kesehatan</string>
+    <string name="riwayat_input_subtitle">Catat hasil pemeriksaan</string>
+    <string name="riwayat_input_label_date">Tanggal</string>
+    <string name="riwayat_input_hint_date">dd / mm / yyyy</string>
+    <string name="riwayat_input_label_facility">Tempat Pemeriksaan</string>
+    <string name="riwayat_input_hint_facility">Nama klinik atau rumah sakit</string>
+    <string name="riwayat_input_label_complaint">Keluhan</string>
+    <string name="riwayat_input_hint_complaint">Keluhan yang dirasakan</string>
+    <string name="riwayat_input_label_medicine">Obat</string>
+    <string name="riwayat_input_hint_medicine">Obat yang diberikan</string>
+    <string name="riwayat_input_save">Simpan</string>
+    <string name="riwayat_input_error_date_required">Tanggal pemeriksaan wajib diisi</string>
+    <string name="riwayat_input_error_date_future">Tanggal tidak boleh melebihi hari ini</string>
+    <string name="riwayat_input_error_facility_required">Tempat pemeriksaan wajib diisi</string>
+    <string name="riwayat_input_error_complaint_required">Keluhan wajib diisi</string>
+</resources>
