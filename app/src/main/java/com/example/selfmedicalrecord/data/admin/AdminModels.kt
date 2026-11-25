@@ -2,7 +2,7 @@ package com.example.selfmedicalrecord.data.admin
 
 enum class UserRole { ADMIN, USER }
 
-enum class AccountStatus { ACTIVE, PENDING }
+enum class AccountStatus { ACTIVE, INACTIVE, PENDING }
 
 /** Akun yang dikelola admin (layar Daftar User). */
 data class AdminUser(
@@ -10,7 +10,9 @@ data class AdminUser(
     val name: String,
     val email: String,
     val role: UserRole,
-    val status: AccountStatus
+    val status: AccountStatus,
+    /** Teks siap tampil, mis. "10 menit lalu"; null jika belum pernah aktif. */
+    val lastSeen: String? = null
 )
 
 /** Ringkasan aktivitas satu pengguna (layar Data Pengguna). */

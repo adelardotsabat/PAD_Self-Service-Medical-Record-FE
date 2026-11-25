@@ -11,9 +11,9 @@ class FakeAdminRepository : AdminRepository {
 
     private val _users = MutableStateFlow(
         listOf(
-            AdminUser(1, "Andi", "andi@email.com", UserRole.ADMIN, AccountStatus.ACTIVE),
-            AdminUser(2, "Siti Rahma", "siti@email.com", UserRole.USER, AccountStatus.ACTIVE),
-            AdminUser(3, "Budi Santoso", "budi@email.com", UserRole.USER, AccountStatus.PENDING)
+            AdminUser(1, "Andi", "andi@email.com", UserRole.ADMIN, AccountStatus.ACTIVE, "10 menit lalu"),
+            AdminUser(2, "Siti Rahma", "siti@email.com", UserRole.USER, AccountStatus.ACTIVE, "15 menit lalu"),
+            AdminUser(3, "Budi Santoso", "budi@email.com", UserRole.USER, AccountStatus.INACTIVE)
         )
     )
     override val users: StateFlow<List<AdminUser>> = _users.asStateFlow()

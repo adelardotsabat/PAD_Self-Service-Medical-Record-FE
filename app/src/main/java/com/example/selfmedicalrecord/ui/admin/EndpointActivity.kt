@@ -1,5 +1,6 @@
 package com.example.selfmedicalrecord.ui.admin
 
+import android.app.Dialog
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -19,6 +20,7 @@ class EndpointActivity : AdminActivity() {
 
     private lateinit var binding: ActivityEndpointBinding
     private val viewModel: EndpointViewModel by viewModels()
+    private var resultDialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,13 +47,48 @@ class EndpointActivity : AdminActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch { viewModel.uiState.collect { state -> render(state) } }
-                launch {
-                    viewModel.messages.collect { message ->
-                        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
-                    }
-                }
+                launch { viewModel.events.collect { event -> handle(event) } }
             }
         }
+    }
+
+    private fun handle(event: EndpointEvent) {
+        resultDialog?.dismiss()
+        resultDialog = when (event) {
+            is EndpointEvent.Message -> {
+                Snackbar.make(binding.root, event.resId, Snackbar.LENGTH_SHORT).show()
+                null
+            }
+            EndpointEvent.SaveSucceeded -> ResultDialog.show(
+                context = this,
+                kind = ResultDialog.Kind.SUCCESS,
+                title = R.string.admin_popup_saved_title,
+                message = R.string.admin_popup_saved_message,
+                primaryText = R.string.admin_popup_understood
+            )
+            EndpointEvent.PingSucceeded -> ResultDialog.show(
+                context = this,
+                kind = ResultDialog.Kind.SUCCESS,
+                title = R.string.admin_popup_ping_ok_title,
+                message = R.string.admin_popup_ping_ok_message,
+                primaryText = R.string.admin_popup_done
+            )
+            EndpointEvent.PingFailed -> ResultDialog.show(
+                context = this,
+                kind = ResultDialog.Kind.ERROR,
+                title = R.string.admin_popup_ping_failed_title,
+                message = R.string.admin_popup_ping_failed_message,
+                primaryText = R.string.admin_popup_retry,
+                onPrimary = { viewModel.ping(url(), port(), apiKey(), binding.switchEnabled.isChecked) },
+                secondaryText = R.string.admin_popup_back_to_settings
+            )
+        }
+    }
+
+    override fun onDestroy() {
+        resultDialog?.dismiss()
+        resultDialog = null
+        super.onDestroy()
     }
 
     private fun url() = binding.etUrl.text?.toString().orEmpty()

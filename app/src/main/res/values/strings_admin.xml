@@ -11,7 +11,7 @@
 
     <!-- Dashboard -->
     <string name="admin_greeting">Hai, %1$s</string>
-    <string name="admin_role_title">Administrator</string>
+    <string name="admin_role_title">Administrator Utama</string>
     <string name="admin_notifications">Notifikasi</string>
     <string name="admin_status_running">Sistem Berjalan</string>
     <string name="admin_status_optimal">Status: Optimal</string>
@@ -73,8 +73,8 @@
     <string name="admin_log_empty">Belum ada aktivitas</string>
 
     <!-- Daftar User -->
-    <string name="admin_user_list_title">Daftar User</string>
-    <string name="admin_user_list_subtitle">Kelola kredensial dan hak akses klinis</string>
+    <string name="admin_user_list_title">Manajemen Pengguna</string>
+    <string name="admin_user_list_subtitle">Kelola akun dan hak akses pengguna aplikasi</string>
     <string name="admin_user_search_hint">Cari pengguna…</string>
     <string name="admin_user_add">Tambah</string>
     <string name="admin_role_admin">Admin</string>
@@ -105,4 +105,29 @@
     <string name="admin_user_save">Simpan Pengguna</string>
     <string name="admin_user_saved">Pengguna ditambahkan</string>
     <string name="admin_error_email_taken">Email sudah terdaftar</string>
+
+    <!-- Beranda admin -->
+    <string name="admin_menu_endpoint">Atur Endpoint</string>
+    <string name="admin_menu_activity_log">Log Aktivitas</string>
+    <string name="admin_menu_user_management">Manajemen Pengguna</string>
+    <string name="admin_menu_add_user">Tambah User Baru</string>
+
+    <!-- Manajemen Pengguna -->
+    <string name="admin_users_stat_total">Total</string>
+    <string name="admin_users_stat_active">Aktif</string>
+    <string name="admin_users_stat_inactive">Nonaktif</string>
+    <string name="admin_user_role_seen">%1$s · %2$s</string>
+
+    <!-- Popup hasil pengaturan -->
+    <string name="admin_popup_close">Tutup</string>
+    <string name="admin_popup_ping_failed_title">Koneksi gagal</string>
+    <string name="admin_popup_ping_failed_message">Server belum dapat dijangkau. Periksa URL server, port, API key, dan jaringan Anda.</string>
+    <string name="admin_popup_retry">Coba lagi</string>
+    <string name="admin_popup_back_to_settings">Kembali ke pengaturan</string>
+    <string name="admin_popup_ping_ok_title">Koneksi berhasil</string>
+    <string name="admin_popup_ping_ok_message">Server berhasil dijangkau. Endpoint siap digunakan untuk integrasi data medis.</string>
+    <string name="admin_popup_done">Selesai</string>
+    <string name="admin_popup_saved_title">Konfigurasi tersimpan</string>
+    <string name="admin_popup_saved_message">Pengaturan endpoint berhasil disimpan. Anda dapat melanjutkan menggunakan konfigurasi ini.</string>
+    <string name="admin_popup_understood">Mengerti</string>
 </resources>

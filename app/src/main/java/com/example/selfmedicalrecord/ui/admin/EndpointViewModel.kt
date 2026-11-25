@@ -29,6 +29,15 @@ data class EndpointUiState(
     val isBusy: Boolean get() = isLoading || isSaving || isPinging
 }
 
+/** Kejadian sekali tampil dari layar Atur Endpoint. */
+sealed interface EndpointEvent {
+    /** Pesan singkat (Snackbar), mis. gagal memuat atau gagal menyimpan. */
+    data class Message(@StringRes val resId: Int) : EndpointEvent
+    data object SaveSucceeded : EndpointEvent
+    data object PingSucceeded : EndpointEvent
+    data object PingFailed : EndpointEvent
+}
+
 class EndpointViewModel(
     private val repository: AdminRepository = ServiceLocator.adminRepository
 ) : ViewModel() {
@@ -36,9 +45,8 @@ class EndpointViewModel(
     private val _uiState = MutableStateFlow(EndpointUiState())
     val uiState: StateFlow<EndpointUiState> = _uiState.asStateFlow()
 
-    private val _messages = Channel<Int>(Channel.BUFFERED)
-    /** Pesan sekali tampil (id string), untuk Snackbar. */
-    val messages: Flow<Int> = _messages.receiveAsFlow()
+    private val _events = Channel<EndpointEvent>(Channel.BUFFERED)
+    val events: Flow<EndpointEvent> = _events.receiveAsFlow()
 
     init {
         viewModelScope.launch {
@@ -48,7 +56,7 @@ class EndpointViewModel(
                 }
                 .onFailure {
                     _uiState.update { it.copy(isLoading = false) }
-                    _messages.send(R.string.admin_error_load_failed)
+                    _events.send(EndpointEvent.Message(R.string.admin_error_load_failed))
                 }
         }
     }
@@ -68,8 +76,9 @@ class EndpointViewModel(
         viewModelScope.launch {
             val result = repository.saveEndpointConfig(config)
             _uiState.update { it.copy(isSaving = false) }
-            _messages.send(
-                if (result.isSuccess) R.string.admin_endpoint_saved else R.string.admin_error_save_failed
+            _events.send(
+                if (result.isSuccess) EndpointEvent.SaveSucceeded
+                else EndpointEvent.Message(R.string.admin_error_save_failed)
             )
         }
     }
@@ -81,8 +90,8 @@ class EndpointViewModel(
         viewModelScope.launch {
             val result = repository.pingEndpoint(config)
             _uiState.update { it.copy(isPinging = false) }
-            _messages.send(
-                if (result.isSuccess) R.string.admin_endpoint_ping_ok else R.string.admin_endpoint_ping_failed
+            _events.send(
+                if (result.isSuccess) EndpointEvent.PingSucceeded else EndpointEvent.PingFailed
             )
         }
     }

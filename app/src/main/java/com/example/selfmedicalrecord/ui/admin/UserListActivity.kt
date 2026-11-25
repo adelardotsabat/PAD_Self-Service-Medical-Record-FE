@@ -17,12 +17,15 @@ import com.example.selfmedicalrecord.utils.applySystemBarInsetsAsPadding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.launch
 
-/** Daftar User: cari, tambah, dan hapus akun. */
+/** Manajemen Pengguna: ringkasan akun, cari, tambah, dan hapus akun. */
 class UserListActivity : AdminActivity() {
 
     private lateinit var binding: ActivityUserListBinding
     private val viewModel: UserListViewModel by viewModels()
-    private val adapter = UserAdapter { anchor, user -> showMenu(anchor, user) }
+    private val adapter = UserAdapter(
+        onItemClick = { openUserActivity() },
+        onMoreClick = { anchor, user -> showMenu(anchor, user) }
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,18 +42,28 @@ class UserListActivity : AdminActivity() {
         binding.btnAdd.setOnClickListener {
             startActivity(Intent(this, AddUserActivity::class.java))
         }
-        binding.tvActivityLink.setOnClickListener {
-            startActivity(Intent(this, UserActivityActivity::class.java))
-        }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.users.collect { users ->
-                    adapter.submitList(users)
-                    binding.tvEmpty.isVisible = users.isEmpty()
+                launch {
+                    viewModel.users.collect { users ->
+                        adapter.submitList(users)
+                        binding.tvEmpty.isVisible = users.isEmpty()
+                    }
+                }
+                launch {
+                    viewModel.stats.collect { stats ->
+                        binding.tvStatTotal.text = stats.total.toString()
+                        binding.tvStatActive.text = stats.active.toString()
+                        binding.tvStatInactive.text = stats.inactive.toString()
+                    }
                 }
             }
         }
+    }
+
+    private fun openUserActivity() {
+        startActivity(Intent(this, UserActivityActivity::class.java))
     }
 
     private fun showMenu(anchor: android.view.View, user: AdminUser) {
