@@ -130,4 +130,19 @@
     <string name="admin_popup_saved_title">Konfigurasi tersimpan</string>
     <string name="admin_popup_saved_message">Pengaturan endpoint berhasil disimpan. Anda dapat melanjutkan menggunakan konfigurasi ini.</string>
     <string name="admin_popup_understood">Mengerti</string>
+
+    <!-- Manajemen Pengguna: ubah status akun -->
+    <string name="admin_user_deactivate">Nonaktifkan akun</string>
+    <string name="admin_user_activate">Aktifkan akun</string>
+    <string name="admin_user_deactivate_title">Nonaktifkan akun?</string>
+    <string name="admin_user_deactivate_message">%1$s akan dikeluarkan dari semua perangkat dan tidak bisa masuk sampai akunnya diaktifkan lagi.</string>
+    <string name="admin_user_activate_title">Aktifkan akun?</string>
+    <string name="admin_user_activate_message">%1$s bisa masuk kembali ke aplikasi.</string>
+    <string name="admin_action_deactivate">Nonaktifkan</string>
+    <string name="admin_action_activate">Aktifkan</string>
+    <string name="admin_user_activated">Akun diaktifkan</string>
+    <string name="admin_user_deactivated">Akun dinonaktifkan</string>
+    <string name="admin_error_self_status">Kamu tidak bisa mengubah status akunmu sendiri</string>
+    <string name="admin_error_last_admin">Administrator aktif terakhir tidak bisa dinonaktifkan</string>
+    <string name="admin_add_user_unavailable">Tambah user belum tersedia di server</string>
 </resources>

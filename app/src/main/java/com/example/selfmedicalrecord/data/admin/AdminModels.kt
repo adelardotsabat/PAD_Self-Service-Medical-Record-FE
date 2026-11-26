@@ -15,6 +15,9 @@ data class AdminUser(
     val lastSeen: String? = null
 )
 
+/** Jumlah akun untuk kartu ringkasan (dihitung dari seluruh akun, bukan hasil pencarian). */
+data class UserStats(val total: Int = 0, val active: Int = 0, val inactive: Int = 0)
+
 /** Ringkasan aktivitas satu pengguna (layar Data Pengguna). */
 data class UserActivity(
     val id: Long,

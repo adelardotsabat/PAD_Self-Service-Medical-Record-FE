@@ -11,21 +11,27 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.selfmedicalrecord.R
+import com.example.selfmedicalrecord.data.admin.AccountStatus
 import com.example.selfmedicalrecord.data.admin.AdminUser
 import com.example.selfmedicalrecord.databinding.ActivityUserListBinding
 import com.example.selfmedicalrecord.utils.applySystemBarInsetsAsPadding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
-/** Manajemen Pengguna: ringkasan akun, cari, tambah, dan hapus akun. */
+/** Manajemen Pengguna: ringkasan akun, cari, tambah, serta aktifkan / nonaktifkan akun. */
 class UserListActivity : AdminActivity() {
 
     private lateinit var binding: ActivityUserListBinding
     private val viewModel: UserListViewModel by viewModels()
+    // Baris tidak bisa diklik: layar "Data Pengguna" masih data contoh dan tidak sesuai daftar asli.
     private val adapter = UserAdapter(
-        onItemClick = { openUserActivity() },
+        onItemClick = null,
         onMoreClick = { anchor, user -> showMenu(anchor, user) }
     )
+
+    private var isLoading = true
+    private var isEmpty = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +54,19 @@ class UserListActivity : AdminActivity() {
                 launch {
                     viewModel.users.collect { users ->
                         adapter.submitList(users)
-                        binding.tvEmpty.isVisible = users.isEmpty()
+                        isEmpty = users.isEmpty()
+                        renderEmpty()
+                    }
+                }
+                launch {
+                    viewModel.isLoading.collect { loading ->
+                        isLoading = loading
+                        renderEmpty()
+                    }
+                }
+                launch {
+                    viewModel.messages.collect { messageRes ->
+                        Snackbar.make(binding.root, messageRes, Snackbar.LENGTH_LONG).show()
                     }
                 }
                 launch {
@@ -62,31 +80,49 @@ class UserListActivity : AdminActivity() {
         }
     }
 
-    private fun openUserActivity() {
-        startActivity(Intent(this, UserActivityActivity::class.java))
+    // Muat ulang tiap layar tampil, supaya akun baru dari Tambah User langsung muncul.
+    override fun onStart() {
+        super.onStart()
+        viewModel.load()
+    }
+
+    /** "Pengguna tidak ditemukan" jangan sempat muncul selama data masih dimuat. */
+    private fun renderEmpty() {
+        binding.tvEmpty.isVisible = !isLoading && isEmpty
     }
 
     private fun showMenu(anchor: android.view.View, user: AdminUser) {
+        val isActive = user.status == AccountStatus.ACTIVE
         PopupMenu(this, anchor).apply {
-            menu.add(0, MENU_DELETE, 0, R.string.admin_user_delete)
+            menu.add(
+                0, MENU_TOGGLE, 0,
+                if (isActive) R.string.admin_user_deactivate else R.string.admin_user_activate
+            )
             setOnMenuItemClickListener { item ->
-                if (item.itemId == MENU_DELETE) confirmDelete(user)
+                if (item.itemId == MENU_TOGGLE) confirmToggle(user, activate = !isActive)
                 true
             }
             show()
         }
     }
 
-    private fun confirmDelete(user: AdminUser) {
+    private fun confirmToggle(user: AdminUser, activate: Boolean) {
         MaterialAlertDialogBuilder(this)
-            .setTitle(R.string.admin_user_delete_title)
-            .setMessage(getString(R.string.admin_user_delete_message, user.name))
+            .setTitle(if (activate) R.string.admin_user_activate_title else R.string.admin_user_deactivate_title)
+            .setMessage(
+                getString(
+                    if (activate) R.string.admin_user_activate_message else R.string.admin_user_deactivate_message,
+                    user.name
+                )
+            )
             .setNegativeButton(R.string.admin_cancel, null)
-            .setPositiveButton(R.string.admin_delete) { _, _ -> viewModel.delete(user.id) }
+            .setPositiveButton(
+                if (activate) R.string.admin_action_activate else R.string.admin_action_deactivate
+            ) { _, _ -> viewModel.setActive(user, activate) }
             .show()
     }
 
     private companion object {
-        const val MENU_DELETE = 1
+        const val MENU_TOGGLE = 1
     }
 }

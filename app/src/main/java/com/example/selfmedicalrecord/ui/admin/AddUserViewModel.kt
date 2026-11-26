@@ -7,6 +7,7 @@ import com.example.selfmedicalrecord.R
 import com.example.selfmedicalrecord.data.ServiceLocator
 import com.example.selfmedicalrecord.data.admin.AdminRepository
 import com.example.selfmedicalrecord.data.admin.EmailTakenException
+import com.example.selfmedicalrecord.data.admin.FeatureUnavailableException
 import com.example.selfmedicalrecord.data.admin.UserRole
 import com.example.selfmedicalrecord.utils.Validators
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -65,10 +66,10 @@ class AddUserViewModel(
             repository.addUser(name.trim(), email.trim(), password, _uiState.value.role)
                 .onSuccess { _uiState.update { it.copy(isSaving = false, isSaved = true) } }
                 .onFailure { error ->
-                    val message = if (error is EmailTakenException) {
-                        R.string.admin_error_email_taken
-                    } else {
-                        R.string.admin_error_save_failed
+                    val message = when (error) {
+                        is EmailTakenException -> R.string.admin_error_email_taken
+                        is FeatureUnavailableException -> R.string.admin_add_user_unavailable
+                        else -> R.string.admin_error_save_failed
                     }
                     _uiState.update { it.copy(isSaving = false, formError = message) }
                 }

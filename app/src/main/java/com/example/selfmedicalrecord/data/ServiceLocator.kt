@@ -2,7 +2,7 @@ package com.example.selfmedicalrecord.data
 
 import android.content.Context
 import com.example.selfmedicalrecord.data.admin.AdminRepository
-import com.example.selfmedicalrecord.data.admin.FakeAdminRepository
+import com.example.selfmedicalrecord.data.admin.RemoteAdminRepository
 import com.example.selfmedicalrecord.data.auth.AuthRepository
 import com.example.selfmedicalrecord.data.auth.RemoteAuthRepository
 import com.example.selfmedicalrecord.data.food.FakeFoodCalorieRepository
@@ -44,8 +44,8 @@ object ServiceLocator {
     // Sudah tersambung ke backend: data akun (/me) dan simpan profil.
     val profileRepository: ProfileRepository by lazy { RemoteProfileRepository(api, tokenStore) }
 
-    // Backend belum punya endpoint admin, jadi masih Fake.
-    val adminRepository: AdminRepository by lazy { FakeAdminRepository() }
+    // Admin disambungkan bertahap: Log Aktivitas sudah ke backend, sisanya masih data contoh.
+    val adminRepository: AdminRepository by lazy { RemoteAdminRepository(api) }
 
     // Sudah tersambung ke backend: berat/tinggi (BMI) dan tensi lewat /health-records.
     val healthRepository: HealthRepository by lazy { RemoteHealthRepository(api) }

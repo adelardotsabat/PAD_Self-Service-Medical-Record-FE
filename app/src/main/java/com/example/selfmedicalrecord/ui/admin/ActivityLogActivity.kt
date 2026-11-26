@@ -12,6 +12,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.selfmedicalrecord.R
 import com.example.selfmedicalrecord.databinding.ActivityActivityLogBinding
 import com.example.selfmedicalrecord.utils.applySystemBarInsetsAsPadding
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
 /** Log Aktivitas: jejak audit dengan filter kategori. */
@@ -46,7 +47,18 @@ class ActivityLogActivity : AdminActivity() {
                     styleChip(binding.chipData, state.filter == LogFilter.DATA)
                     styleChip(binding.chipSystem, state.filter == LogFilter.SYSTEM)
                     adapter.submitList(state.entries)
-                    binding.tvEmpty.isVisible = state.entries.isEmpty()
+                    // Sembunyikan "belum ada aktivitas" selama data masih dimuat.
+                    binding.tvEmpty.isVisible = !state.isLoading && state.entries.isEmpty()
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.errors.collect { messageRes ->
+                    Snackbar.make(binding.root, messageRes, Snackbar.LENGTH_LONG)
+                        .setAction(R.string.admin_popup_retry) { viewModel.load() }
+                        .show()
                 }
             }
         }

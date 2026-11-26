@@ -13,7 +13,8 @@ import com.example.selfmedicalrecord.data.admin.UserRole
 import com.example.selfmedicalrecord.databinding.ItemAdminUserBinding
 
 class UserAdapter(
-    private val onItemClick: (user: AdminUser) -> Unit,
+    /** Null = baris tidak bisa diklik. */
+    private val onItemClick: ((user: AdminUser) -> Unit)? = null,
     private val onMoreClick: (anchor: android.view.View, user: AdminUser) -> Unit
 ) : ListAdapter<AdminUser, UserAdapter.Holder>(Diff) {
 
@@ -48,7 +49,14 @@ class UserAdapter(
                     context.getString(R.string.admin_state_waiting), R.color.badge_amber_bg, R.color.badge_amber_text
                 )
             }
-            root.setOnClickListener { onItemClick(item) }
+            val click = onItemClick
+            if (click != null) {
+                root.setOnClickListener { click(item) }
+            } else {
+                // setOnClickListener otomatis membuat view clickable, jadi matikan setelahnya.
+                root.setOnClickListener(null)
+                root.isClickable = false
+            }
             btnMore.setOnClickListener { onMoreClick(btnMore, item) }
         }
     }

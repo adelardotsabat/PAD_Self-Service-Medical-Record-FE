@@ -103,6 +103,15 @@ class FakeAdminRepository : AdminRepository {
         return Result.success(Unit)
     }
 
+    override suspend fun setUserActive(id: Long, active: Boolean): Result<Unit> {
+        _users.update { list ->
+            list.map {
+                if (it.id == id) it.copy(status = if (active) AccountStatus.ACTIVE else AccountStatus.INACTIVE) else it
+            }
+        }
+        return Result.success(Unit)
+    }
+
     override suspend fun deleteUser(id: Long): Result<Unit> {
         _users.update { list -> list.filterNot { it.id == id } }
         return Result.success(Unit)

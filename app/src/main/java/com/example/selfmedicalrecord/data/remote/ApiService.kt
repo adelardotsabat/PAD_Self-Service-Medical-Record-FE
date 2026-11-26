@@ -3,6 +3,7 @@ package com.example.selfmedicalrecord.data.remote
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.PUT
@@ -74,4 +75,32 @@ interface ApiService {
 
     @POST("logout")
     suspend fun logout(): Response<ApiEnvelope<Any>>
+
+    // ---- Admin (hanya akun ADMIN; selain itu backend membalas 403) ----
+
+    /** Log gabungan. category: ALL, LOGIN, DATA, SYSTEM, ERROR. per_page maksimal 100. */
+    @GET("admin/logs")
+    suspend fun adminLogs(
+        @Query("category") category: String,
+        @Query("per_page") perPage: Int,
+        @Query("page") page: Int
+    ): Response<ApiEnvelope<AdminLogsData>>
+
+    /** Daftar akun (terbaru dulu). per_page maksimal 100. */
+    @GET("admin/users")
+    suspend fun adminUsers(
+        @Query("per_page") perPage: Int,
+        @Query("page") page: Int
+    ): Response<ApiEnvelope<PageDto<AdminUserDto>>>
+
+    /** Aktifkan / nonaktifkan akun. 403 = akun sendiri, 422 = admin aktif terakhir. */
+    @PATCH("admin/users/{id}/status")
+    suspend fun adminSetUserStatus(
+        @Path("id") id: Long,
+        @Body body: AdminUserStatusRequest
+    ): Response<ApiEnvelope<AdminUserDto>>
+
+    /** Ringkasan admin; dipakai untuk jumlah akun total/aktif/nonaktif. */
+    @GET("admin/dashboard")
+    suspend fun adminDashboard(): Response<ApiEnvelope<AdminDashboardData>>
 }
